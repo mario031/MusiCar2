@@ -7,23 +7,22 @@
 //
 
 import Foundation
-import Realm
+import RealmSwift
 
-class Music: RLMObject {
-//    dynamic var id:NSNumber!
+class Music: Object {
+    dynamic var title = ""
+    dynamic var id = 0
     dynamic var album = ""
     dynamic var artist = ""
-    dynamic var title = ""
     dynamic var country = ""
     dynamic var date = ""
     dynamic var sex = ""
     dynamic var mood = ""
     dynamic var image = ""
-//    dynamic var url:NSURL!
+    dynamic var url = ""
     
-    override class func primaryKey() -> String? {
+    override static func primaryKey() -> String? {
         return "title"
     }
-    
 }
 

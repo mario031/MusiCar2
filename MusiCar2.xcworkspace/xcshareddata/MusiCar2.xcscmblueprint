@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "3A512EA959362D5457676EF2F9E0869AE28B995A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "78FF9485CDA44FB468825734744813DDD1D4255F" : 0,
+    "3A512EA959362D5457676EF2F9E0869AE28B995A" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "588EC9DD-0B8C-4259-8100-E0CEAB5CFA93",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "78FF9485CDA44FB468825734744813DDD1D4255F" : "MusiCar\/",
+    "3A512EA959362D5457676EF2F9E0869AE28B995A" : "MusiCar2\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MusiCar2",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "MusiCar2.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mario031\/MusiCar2.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3A512EA959362D5457676EF2F9E0869AE28B995A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mario031\/MusiCar.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "78FF9485CDA44FB468825734744813DDD1D4255F"
+    }
+  ]
+}

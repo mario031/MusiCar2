@@ -82,3 +82,12 @@ strip_invalid_archs() {
   fi
 }
 
+
+if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-MusiCar2Tests/Realm.framework"
+  install_framework "Pods-MusiCar2Tests/RealmSwift.framework"
+fi
+if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-MusiCar2Tests/Realm.framework"
+  install_framework "Pods-MusiCar2Tests/RealmSwift.framework"
+fi

@@ -4,11 +4,11 @@
 use_frameworks!
 
 target 'MusiCar2', exclusive: true do
-pod 'Realm'
+pod 'RealmSwift'
 end
 
 target 'MusiCar2Tests', exclusive: true do
-pod 'Realm/Headers' 
+pod 'RealmSwift' 
 end
 
 target 'MusiCar2UITests' do

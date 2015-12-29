@@ -1,0 +1,743 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		02B2583B06363DACFC9907D9 /* Pods_MusiCar2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F0188224868E0AFBBBB7664 /* Pods_MusiCar2Tests.framework */; };
+		A38CAC5941532CAADDF3F3F9 /* Pods_MusiCar2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A06E063E47CBEDFC99F2327 /* Pods_MusiCar2.framework */; };
+		B159E4AE1C31E8B900511D3B /* realm-swift-0.97.0 in Resources */ = {isa = PBXBuildFile; fileRef = B159E4AD1C31E8B900511D3B /* realm-swift-0.97.0 */; };
+		B1ABBE841C31D3AA00105545 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ABBE831C31D3AA00105545 /* AppDelegate.swift */; };
+		B1ABBE861C31D3AA00105545 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ABBE851C31D3AA00105545 /* ViewController.swift */; };
+		B1ABBE891C31D3AA00105545 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1ABBE871C31D3AA00105545 /* Main.storyboard */; };
+		B1ABBE8B1C31D3AA00105545 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1ABBE8A1C31D3AA00105545 /* Assets.xcassets */; };
+		B1ABBE8E1C31D3AA00105545 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1ABBE8C1C31D3AA00105545 /* LaunchScreen.storyboard */; };
+		B1ABBE991C31D3AB00105545 /* MusiCar2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ABBE981C31D3AB00105545 /* MusiCar2Tests.swift */; };
+		B1ABBEA41C31D3AB00105545 /* MusiCar2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ABBEA31C31D3AB00105545 /* MusiCar2UITests.swift */; };
+		B1ABBEB21C31D3B900105545 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ABBEB11C31D3B900105545 /* AVFoundation.framework */; };
+		B1ABBEB41C31D3E100105545 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ABBEB31C31D3E100105545 /* MediaPlayer.framework */; };
+		B1ABBEC01C31D45000105545 /* music1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B1ABBEB51C31D45000105545 /* music1.jpg */; };
+		B1ABBEC11C31D45000105545 /* music2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B1ABBEB61C31D45000105545 /* music2.jpg */; };
+		B1ABBEC21C31D45000105545 /* music3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B1ABBEB71C31D45000105545 /* music3.jpg */; };
+		B1ABBEC31C31D45000105545 /* music4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B1ABBEB81C31D45000105545 /* music4.jpg */; };
+		B1ABBEC41C31D45000105545 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = B1ABBEB91C31D45000105545 /* play.png */; };
+		B1ABBEC51C31D45000105545 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = B1ABBEBA1C31D45000105545 /* stop.png */; };
+		B1ABBEC61C31D45000105545 /* skip.png in Resources */ = {isa = PBXBuildFile; fileRef = B1ABBEBB1C31D45000105545 /* skip.png */; };
+		B1ABBEC71C31D45000105545 /* prev.png in Resources */ = {isa = PBXBuildFile; fileRef = B1ABBEBC1C31D45000105545 /* prev.png */; };
+		B1ABBEC81C31D45000105545 /* onpu.png in Resources */ = {isa = PBXBuildFile; fileRef = B1ABBEBD1C31D45000105545 /* onpu.png */; };
+		B1ABBEC91C31D45000105545 /* volume.png in Resources */ = {isa = PBXBuildFile; fileRef = B1ABBEBE1C31D45000105545 /* volume.png */; };
+		B1ABBECA1C31D45000105545 /* volume_mute.png in Resources */ = {isa = PBXBuildFile; fileRef = B1ABBEBF1C31D45000105545 /* volume_mute.png */; };
+		B1ABBECD1C31D57000105545 /* user.xml in Resources */ = {isa = PBXBuildFile; fileRef = B1ABBECC1C31D57000105545 /* user.xml */; };
+		B1ABBECF1C31D58600105545 /* MusicControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ABBECE1C31D58600105545 /* MusicControllerView.swift */; };
+		B1ABBED11C31D59200105545 /* MusicSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ABBED01C31D59200105545 /* MusicSelectView.swift */; };
+		B1ABBED31C31D59F00105545 /* SearchControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ABBED21C31D59F00105545 /* SearchControllerView.swift */; };
+		B1ABBED51C31D5AA00105545 /* SongQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ABBED41C31D5AA00105545 /* SongQuery.swift */; };
+		B1ABBED71C31D5B500105545 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ABBED61C31D5B500105545 /* Music.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B1ABBE951C31D3AB00105545 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B1ABBE781C31D3AA00105545 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B1ABBE7F1C31D3AA00105545;
+			remoteInfo = MusiCar2;
+		};
+		B1ABBEA01C31D3AB00105545 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B1ABBE781C31D3AA00105545 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B1ABBE7F1C31D3AA00105545;
+			remoteInfo = MusiCar2;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		097A660B9C8B55040FAAD3BA /* Pods-MusiCar2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusiCar2.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusiCar2/Pods-MusiCar2.release.xcconfig"; sourceTree = "<group>"; };
+		4A06E063E47CBEDFC99F2327 /* Pods_MusiCar2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusiCar2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F0188224868E0AFBBBB7664 /* Pods_MusiCar2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusiCar2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B156D4E81C31E9F900A7736F /* MusiCar2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MusiCar2-Bridging-Header.h"; sourceTree = "<group>"; };
+		B159E4AD1C31E8B900511D3B /* realm-swift-0.97.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "realm-swift-0.97.0"; path = "../../Downloads/realm-swift-0.97.0"; sourceTree = "<group>"; };
+		B1ABBE801C31D3AA00105545 /* MusiCar2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusiCar2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1ABBE831C31D3AA00105545 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B1ABBE851C31D3AA00105545 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B1ABBE881C31D3AA00105545 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B1ABBE8A1C31D3AA00105545 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B1ABBE8D1C31D3AA00105545 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B1ABBE8F1C31D3AA00105545 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1ABBE941C31D3AB00105545 /* MusiCar2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusiCar2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1ABBE981C31D3AB00105545 /* MusiCar2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusiCar2Tests.swift; sourceTree = "<group>"; };
+		B1ABBE9A1C31D3AB00105545 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1ABBE9F1C31D3AB00105545 /* MusiCar2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusiCar2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1ABBEA31C31D3AB00105545 /* MusiCar2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusiCar2UITests.swift; sourceTree = "<group>"; };
+		B1ABBEA51C31D3AB00105545 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1ABBEB11C31D3B900105545 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B1ABBEB31C31D3E100105545 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		B1ABBEB51C31D45000105545 /* music1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = music1.jpg; path = ../../../Downloads/music1.jpg; sourceTree = "<group>"; };
+		B1ABBEB61C31D45000105545 /* music2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = music2.jpg; path = ../../../Downloads/music2.jpg; sourceTree = "<group>"; };
+		B1ABBEB71C31D45000105545 /* music3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = music3.jpg; path = ../../../Downloads/music3.jpg; sourceTree = "<group>"; };
+		B1ABBEB81C31D45000105545 /* music4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = music4.jpg; path = ../../../Downloads/music4.jpg; sourceTree = "<group>"; };
+		B1ABBEB91C31D45000105545 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = play.png; path = ../../../Downloads/play.png; sourceTree = "<group>"; };
+		B1ABBEBA1C31D45000105545 /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stop.png; path = ../../../Downloads/stop.png; sourceTree = "<group>"; };
+		B1ABBEBB1C31D45000105545 /* skip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = skip.png; path = ../../../Downloads/skip.png; sourceTree = "<group>"; };
+		B1ABBEBC1C31D45000105545 /* prev.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = prev.png; path = ../../../Downloads/prev.png; sourceTree = "<group>"; };
+		B1ABBEBD1C31D45000105545 /* onpu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = onpu.png; path = ../../../Downloads/onpu.png; sourceTree = "<group>"; };
+		B1ABBEBE1C31D45000105545 /* volume.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = volume.png; path = ../../../Downloads/volume.png; sourceTree = "<group>"; };
+		B1ABBEBF1C31D45000105545 /* volume_mute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = volume_mute.png; path = ../../../Downloads/volume_mute.png; sourceTree = "<group>"; };
+		B1ABBECC1C31D57000105545 /* user.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = user.xml; path = ../../MusiCar/user.xml; sourceTree = "<group>"; };
+		B1ABBECE1C31D58600105545 /* MusicControllerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicControllerView.swift; sourceTree = "<group>"; };
+		B1ABBED01C31D59200105545 /* MusicSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicSelectView.swift; sourceTree = "<group>"; };
+		B1ABBED21C31D59F00105545 /* SearchControllerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchControllerView.swift; sourceTree = "<group>"; };
+		B1ABBED41C31D5AA00105545 /* SongQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongQuery.swift; sourceTree = "<group>"; };
+		B1ABBED61C31D5B500105545 /* Music.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
+		BFA83F270376030A41D27F8F /* Pods-MusiCar2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusiCar2Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusiCar2Tests/Pods-MusiCar2Tests.release.xcconfig"; sourceTree = "<group>"; };
+		D3E55244546DF51E8EB4E45D /* Pods-MusiCar2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusiCar2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusiCar2Tests/Pods-MusiCar2Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		F83DC31D8D8757D0A6A8E2AC /* Pods-MusiCar2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusiCar2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusiCar2/Pods-MusiCar2.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B1ABBE7D1C31D3AA00105545 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1ABBEB41C31D3E100105545 /* MediaPlayer.framework in Frameworks */,
+				B1ABBEB21C31D3B900105545 /* AVFoundation.framework in Frameworks */,
+				A38CAC5941532CAADDF3F3F9 /* Pods_MusiCar2.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1ABBE911C31D3AB00105545 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02B2583B06363DACFC9907D9 /* Pods_MusiCar2Tests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1ABBE9C1C31D3AB00105545 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4DAF549E38B409D99BA349A4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4A06E063E47CBEDFC99F2327 /* Pods_MusiCar2.framework */,
+				5F0188224868E0AFBBBB7664 /* Pods_MusiCar2Tests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		90272CF3EF1205AEF9331205 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F83DC31D8D8757D0A6A8E2AC /* Pods-MusiCar2.debug.xcconfig */,
+				097A660B9C8B55040FAAD3BA /* Pods-MusiCar2.release.xcconfig */,
+				D3E55244546DF51E8EB4E45D /* Pods-MusiCar2Tests.debug.xcconfig */,
+				BFA83F270376030A41D27F8F /* Pods-MusiCar2Tests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B1ABBE771C31D3AA00105545 = {
+			isa = PBXGroup;
+			children = (
+				B159E4AD1C31E8B900511D3B /* realm-swift-0.97.0 */,
+				B1ABBEB31C31D3E100105545 /* MediaPlayer.framework */,
+				B1ABBEB11C31D3B900105545 /* AVFoundation.framework */,
+				B1ABBE821C31D3AA00105545 /* MusiCar2 */,
+				B1ABBE971C31D3AB00105545 /* MusiCar2Tests */,
+				B1ABBEA21C31D3AB00105545 /* MusiCar2UITests */,
+				B1ABBE811C31D3AA00105545 /* Products */,
+				90272CF3EF1205AEF9331205 /* Pods */,
+				4DAF549E38B409D99BA349A4 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		B1ABBE811C31D3AA00105545 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B1ABBE801C31D3AA00105545 /* MusiCar2.app */,
+				B1ABBE941C31D3AB00105545 /* MusiCar2Tests.xctest */,
+				B1ABBE9F1C31D3AB00105545 /* MusiCar2UITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B1ABBE821C31D3AA00105545 /* MusiCar2 */ = {
+			isa = PBXGroup;
+			children = (
+				B156D4E81C31E9F900A7736F /* MusiCar2-Bridging-Header.h */,
+				B1ABBECC1C31D57000105545 /* user.xml */,
+				B1ABBECB1C31D45500105545 /* picture */,
+				B1ABBE831C31D3AA00105545 /* AppDelegate.swift */,
+				B1ABBE851C31D3AA00105545 /* ViewController.swift */,
+				B1ABBECE1C31D58600105545 /* MusicControllerView.swift */,
+				B1ABBED01C31D59200105545 /* MusicSelectView.swift */,
+				B1ABBED21C31D59F00105545 /* SearchControllerView.swift */,
+				B1ABBE871C31D3AA00105545 /* Main.storyboard */,
+				B1ABBE8A1C31D3AA00105545 /* Assets.xcassets */,
+				B1ABBE8C1C31D3AA00105545 /* LaunchScreen.storyboard */,
+				B1ABBE8F1C31D3AA00105545 /* Info.plist */,
+				B1ABBED41C31D5AA00105545 /* SongQuery.swift */,
+				B1ABBED61C31D5B500105545 /* Music.swift */,
+			);
+			path = MusiCar2;
+			sourceTree = "<group>";
+		};
+		B1ABBE971C31D3AB00105545 /* MusiCar2Tests */ = {
+			isa = PBXGroup;
+			children = (
+				B1ABBE981C31D3AB00105545 /* MusiCar2Tests.swift */,
+				B1ABBE9A1C31D3AB00105545 /* Info.plist */,
+			);
+			path = MusiCar2Tests;
+			sourceTree = "<group>";
+		};
+		B1ABBEA21C31D3AB00105545 /* MusiCar2UITests */ = {
+			isa = PBXGroup;
+			children = (
+				B1ABBEA31C31D3AB00105545 /* MusiCar2UITests.swift */,
+				B1ABBEA51C31D3AB00105545 /* Info.plist */,
+			);
+			path = MusiCar2UITests;
+			sourceTree = "<group>";
+		};
+		B1ABBECB1C31D45500105545 /* picture */ = {
+			isa = PBXGroup;
+			children = (
+				B1ABBEB51C31D45000105545 /* music1.jpg */,
+				B1ABBEB61C31D45000105545 /* music2.jpg */,
+				B1ABBEB71C31D45000105545 /* music3.jpg */,
+				B1ABBEB81C31D45000105545 /* music4.jpg */,
+				B1ABBEB91C31D45000105545 /* play.png */,
+				B1ABBEBA1C31D45000105545 /* stop.png */,
+				B1ABBEBB1C31D45000105545 /* skip.png */,
+				B1ABBEBC1C31D45000105545 /* prev.png */,
+				B1ABBEBD1C31D45000105545 /* onpu.png */,
+				B1ABBEBE1C31D45000105545 /* volume.png */,
+				B1ABBEBF1C31D45000105545 /* volume_mute.png */,
+			);
+			name = picture;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B1ABBE7F1C31D3AA00105545 /* MusiCar2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B1ABBEA81C31D3AB00105545 /* Build configuration list for PBXNativeTarget "MusiCar2" */;
+			buildPhases = (
+				3CDE9AB26D259C5CB4C771A0 /* Check Pods Manifest.lock */,
+				B1ABBE7C1C31D3AA00105545 /* Sources */,
+				B1ABBE7D1C31D3AA00105545 /* Frameworks */,
+				B1ABBE7E1C31D3AA00105545 /* Resources */,
+				D041A7B8FB619877DF9FD82D /* Embed Pods Frameworks */,
+				FB23EB1C1AF959B89C1086D6 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MusiCar2;
+			productName = MusiCar2;
+			productReference = B1ABBE801C31D3AA00105545 /* MusiCar2.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B1ABBE931C31D3AB00105545 /* MusiCar2Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B1ABBEAB1C31D3AB00105545 /* Build configuration list for PBXNativeTarget "MusiCar2Tests" */;
+			buildPhases = (
+				510DAF196457C33C7EE562A2 /* Check Pods Manifest.lock */,
+				B1ABBE901C31D3AB00105545 /* Sources */,
+				B1ABBE911C31D3AB00105545 /* Frameworks */,
+				B1ABBE921C31D3AB00105545 /* Resources */,
+				09A34FE3292876B5523FAA54 /* Embed Pods Frameworks */,
+				11731C4943DB6E3C05DC1C8C /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B1ABBE961C31D3AB00105545 /* PBXTargetDependency */,
+			);
+			name = MusiCar2Tests;
+			productName = MusiCar2Tests;
+			productReference = B1ABBE941C31D3AB00105545 /* MusiCar2Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B1ABBE9E1C31D3AB00105545 /* MusiCar2UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B1ABBEAE1C31D3AB00105545 /* Build configuration list for PBXNativeTarget "MusiCar2UITests" */;
+			buildPhases = (
+				B1ABBE9B1C31D3AB00105545 /* Sources */,
+				B1ABBE9C1C31D3AB00105545 /* Frameworks */,
+				B1ABBE9D1C31D3AB00105545 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B1ABBEA11C31D3AB00105545 /* PBXTargetDependency */,
+			);
+			name = MusiCar2UITests;
+			productName = MusiCar2UITests;
+			productReference = B1ABBE9F1C31D3AB00105545 /* MusiCar2UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B1ABBE781C31D3AA00105545 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "石川伶";
+				TargetAttributes = {
+					B1ABBE7F1C31D3AA00105545 = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = RHNH48U726;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+					B1ABBE931C31D3AB00105545 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = B1ABBE7F1C31D3AA00105545;
+					};
+					B1ABBE9E1C31D3AB00105545 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = B1ABBE7F1C31D3AA00105545;
+					};
+				};
+			};
+			buildConfigurationList = B1ABBE7B1C31D3AA00105545 /* Build configuration list for PBXProject "MusiCar2" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B1ABBE771C31D3AA00105545;
+			productRefGroup = B1ABBE811C31D3AA00105545 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B1ABBE7F1C31D3AA00105545 /* MusiCar2 */,
+				B1ABBE931C31D3AB00105545 /* MusiCar2Tests */,
+				B1ABBE9E1C31D3AB00105545 /* MusiCar2UITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B1ABBE7E1C31D3AA00105545 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1ABBEC71C31D45000105545 /* prev.png in Resources */,
+				B1ABBE8E1C31D3AA00105545 /* LaunchScreen.storyboard in Resources */,
+				B1ABBEC41C31D45000105545 /* play.png in Resources */,
+				B1ABBEC51C31D45000105545 /* stop.png in Resources */,
+				B1ABBEC21C31D45000105545 /* music3.jpg in Resources */,
+				B1ABBEC81C31D45000105545 /* onpu.png in Resources */,
+				B159E4AE1C31E8B900511D3B /* realm-swift-0.97.0 in Resources */,
+				B1ABBECD1C31D57000105545 /* user.xml in Resources */,
+				B1ABBE8B1C31D3AA00105545 /* Assets.xcassets in Resources */,
+				B1ABBE891C31D3AA00105545 /* Main.storyboard in Resources */,
+				B1ABBEC61C31D45000105545 /* skip.png in Resources */,
+				B1ABBEC11C31D45000105545 /* music2.jpg in Resources */,
+				B1ABBEC01C31D45000105545 /* music1.jpg in Resources */,
+				B1ABBEC31C31D45000105545 /* music4.jpg in Resources */,
+				B1ABBECA1C31D45000105545 /* volume_mute.png in Resources */,
+				B1ABBEC91C31D45000105545 /* volume.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1ABBE921C31D3AB00105545 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1ABBE9D1C31D3AB00105545 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		09A34FE3292876B5523FAA54 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MusiCar2Tests/Pods-MusiCar2Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		11731C4943DB6E3C05DC1C8C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MusiCar2Tests/Pods-MusiCar2Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3CDE9AB26D259C5CB4C771A0 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		510DAF196457C33C7EE562A2 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D041A7B8FB619877DF9FD82D /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MusiCar2/Pods-MusiCar2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FB23EB1C1AF959B89C1086D6 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MusiCar2/Pods-MusiCar2-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B1ABBE7C1C31D3AA00105545 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1ABBED11C31D59200105545 /* MusicSelectView.swift in Sources */,
+				B1ABBED31C31D59F00105545 /* SearchControllerView.swift in Sources */,
+				B1ABBE861C31D3AA00105545 /* ViewController.swift in Sources */,
+				B1ABBED51C31D5AA00105545 /* SongQuery.swift in Sources */,
+				B1ABBED71C31D5B500105545 /* Music.swift in Sources */,
+				B1ABBECF1C31D58600105545 /* MusicControllerView.swift in Sources */,
+				B1ABBE841C31D3AA00105545 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1ABBE901C31D3AB00105545 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1ABBE991C31D3AB00105545 /* MusiCar2Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1ABBE9B1C31D3AB00105545 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1ABBEA41C31D3AB00105545 /* MusiCar2UITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B1ABBE961C31D3AB00105545 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B1ABBE7F1C31D3AA00105545 /* MusiCar2 */;
+			targetProxy = B1ABBE951C31D3AB00105545 /* PBXContainerItemProxy */;
+		};
+		B1ABBEA11C31D3AB00105545 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B1ABBE7F1C31D3AA00105545 /* MusiCar2 */;
+			targetProxy = B1ABBEA01C31D3AB00105545 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B1ABBE871C31D3AA00105545 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B1ABBE881C31D3AA00105545 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B1ABBE8C1C31D3AA00105545 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B1ABBE8D1C31D3AA00105545 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B1ABBEA61C31D3AB00105545 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B1ABBEA71C31D3AB00105545 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B1ABBEA91C31D3AB00105545 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F83DC31D8D8757D0A6A8E2AC /* Pods-MusiCar2.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = MusiCar2/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = rei.MusiCar2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MusiCar2/MusiCar2-Bridging-Header.h";
+			};
+			name = Debug;
+		};
+		B1ABBEAA1C31D3AB00105545 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 097A660B9C8B55040FAAD3BA /* Pods-MusiCar2.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = MusiCar2/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = rei.MusiCar2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MusiCar2/MusiCar2-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		B1ABBEAC1C31D3AB00105545 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D3E55244546DF51E8EB4E45D /* Pods-MusiCar2Tests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = MusiCar2Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = rei.MusiCar2Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MusiCar2.app/MusiCar2";
+			};
+			name = Debug;
+		};
+		B1ABBEAD1C31D3AB00105545 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BFA83F270376030A41D27F8F /* Pods-MusiCar2Tests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = MusiCar2Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = rei.MusiCar2Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MusiCar2.app/MusiCar2";
+			};
+			name = Release;
+		};
+		B1ABBEAF1C31D3AB00105545 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = MusiCar2UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = rei.MusiCar2UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = MusiCar2;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		B1ABBEB01C31D3AB00105545 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = MusiCar2UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = rei.MusiCar2UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = MusiCar2;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B1ABBE7B1C31D3AA00105545 /* Build configuration list for PBXProject "MusiCar2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1ABBEA61C31D3AB00105545 /* Debug */,
+				B1ABBEA71C31D3AB00105545 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B1ABBEA81C31D3AB00105545 /* Build configuration list for PBXNativeTarget "MusiCar2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1ABBEA91C31D3AB00105545 /* Debug */,
+				B1ABBEAA1C31D3AB00105545 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B1ABBEAB1C31D3AB00105545 /* Build configuration list for PBXNativeTarget "MusiCar2Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1ABBEAC1C31D3AB00105545 /* Debug */,
+				B1ABBEAD1C31D3AB00105545 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B1ABBEAE1C31D3AB00105545 /* Build configuration list for PBXNativeTarget "MusiCar2UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1ABBEAF1C31D3AB00105545 /* Debug */,
+				B1ABBEB01C31D3AB00105545 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B1ABBE781C31D3AA00105545 /* Project object */;
+}

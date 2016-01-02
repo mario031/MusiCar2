@@ -24,7 +24,7 @@ class SongQuery {
         
         var artists: [ArtistInfo] = []
         
-        // アルバム情報から曲を取り出す
+        // アーティスト情報から曲を取り出す
         let artistQuery: MPMediaQuery = MPMediaQuery.artistsQuery()
         let artistItems: [MPMediaItemCollection] = artistQuery.collections! as [MPMediaItemCollection]
         var artist: MPMediaItemCollection

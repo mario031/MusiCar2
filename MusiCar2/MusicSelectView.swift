@@ -4,13 +4,17 @@ import AVFoundation
 
 class MusicSelectView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var navigationItemLabel:UINavigationItem!
+    
     var artists: [ArtistInfo] = []
     var songQuery: SongQuery = SongQuery()
     var audio: AVAudioPlayer! = nil
     
     var musicTitle:String!
     var musicArtist:String!
-    
+    var artistNum:Int!
+    var songNum:Int!
+
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -72,6 +76,9 @@ class MusicSelectView: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         musicTitle = artists[indexPath.section].songs[indexPath.row].songTitle
         musicArtist = artists[indexPath.section].songs[indexPath.row].artistName
+        artistNum = indexPath.section
+        songNum = indexPath.row
+        MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = [MPMediaItemPropertyArtist : "\(artists[artistNum].songs[songNum].artistName)",  MPMediaItemPropertyTitle : "\(artists[artistNum].songs[songNum].songTitle)", MPMediaItemPropertyPlaybackDuration: audio.duration, MPNowPlayingInfoPropertyElapsedPlaybackTime: audio.currentTime]
         performSegueWithIdentifier("backMusicController", sender: nil)
     }
     
@@ -82,9 +89,12 @@ class MusicSelectView: UIViewController, UITableViewDelegate, UITableViewDataSou
             // 11. SecondViewControllerのtextに選択した文字列を設定する
             backVC.mtitle = musicTitle
             backVC.martist = musicArtist
+            backVC.artistNum = artistNum
+            backVC.songNum = songNum
             backVC.audio = audio
             
         }
     }
+    
     
 }

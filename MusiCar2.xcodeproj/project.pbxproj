@@ -10,6 +10,8 @@
 		02B2583B06363DACFC9907D9 /* Pods_MusiCar2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F0188224868E0AFBBBB7664 /* Pods_MusiCar2Tests.framework */; };
 		A38CAC5941532CAADDF3F3F9 /* Pods_MusiCar2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A06E063E47CBEDFC99F2327 /* Pods_MusiCar2.framework */; };
 		B159E4AE1C31E8B900511D3B /* realm-swift-0.97.0 in Resources */ = {isa = PBXBuildFile; fileRef = B159E4AD1C31E8B900511D3B /* realm-swift-0.97.0 */; };
+		B17721641C35A3C40093EF49 /* Mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17721631C35A3C40093EF49 /* Mode.swift */; };
+		B17721661C370F6A0093EF49 /* MusicSelectMood.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17721651C370F6A0093EF49 /* MusicSelectMood.swift */; };
 		B1ABBE841C31D3AA00105545 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ABBE831C31D3AA00105545 /* AppDelegate.swift */; };
 		B1ABBE861C31D3AA00105545 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ABBE851C31D3AA00105545 /* ViewController.swift */; };
 		B1ABBE891C31D3AA00105545 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1ABBE871C31D3AA00105545 /* Main.storyboard */; };
@@ -61,6 +63,8 @@
 		5F0188224868E0AFBBBB7664 /* Pods_MusiCar2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusiCar2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B156D4E81C31E9F900A7736F /* MusiCar2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MusiCar2-Bridging-Header.h"; sourceTree = "<group>"; };
 		B159E4AD1C31E8B900511D3B /* realm-swift-0.97.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "realm-swift-0.97.0"; path = "../../Downloads/realm-swift-0.97.0"; sourceTree = "<group>"; };
+		B17721631C35A3C40093EF49 /* Mode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mode.swift; sourceTree = "<group>"; };
+		B17721651C370F6A0093EF49 /* MusicSelectMood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicSelectMood.swift; sourceTree = "<group>"; };
 		B1ABBE801C31D3AA00105545 /* MusiCar2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusiCar2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1ABBE831C31D3AA00105545 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1ABBE851C31D3AA00105545 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -182,6 +186,7 @@
 				B1ABBE851C31D3AA00105545 /* ViewController.swift */,
 				B1ABBECE1C31D58600105545 /* MusicControllerView.swift */,
 				B1ABBED01C31D59200105545 /* MusicSelectView.swift */,
+				B17721651C370F6A0093EF49 /* MusicSelectMood.swift */,
 				B1ABBED21C31D59F00105545 /* SearchControllerView.swift */,
 				B1ABBE871C31D3AA00105545 /* Main.storyboard */,
 				B1ABBE8A1C31D3AA00105545 /* Assets.xcassets */,
@@ -189,6 +194,7 @@
 				B1ABBE8F1C31D3AA00105545 /* Info.plist */,
 				B1ABBED41C31D5AA00105545 /* SongQuery.swift */,
 				B1ABBED61C31D5B500105545 /* Music.swift */,
+				B17721631C35A3C40093EF49 /* Mode.swift */,
 			);
 			path = MusiCar2;
 			sourceTree = "<group>";
@@ -480,9 +486,11 @@
 			files = (
 				B1ABBED11C31D59200105545 /* MusicSelectView.swift in Sources */,
 				B1ABBED31C31D59F00105545 /* SearchControllerView.swift in Sources */,
+				B17721641C35A3C40093EF49 /* Mode.swift in Sources */,
 				B1ABBE861C31D3AA00105545 /* ViewController.swift in Sources */,
 				B1ABBED51C31D5AA00105545 /* SongQuery.swift in Sources */,
 				B1ABBED71C31D5B500105545 /* Music.swift in Sources */,
+				B17721661C370F6A0093EF49 /* MusicSelectMood.swift in Sources */,
 				B1ABBECF1C31D58600105545 /* MusicControllerView.swift in Sources */,
 				B1ABBE841C31D3AA00105545 /* AppDelegate.swift in Sources */,
 			);

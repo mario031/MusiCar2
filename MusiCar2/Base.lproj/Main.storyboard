@@ -124,16 +124,6 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0OY-hB-OGH">
-                                <rect key="frame" x="59" y="172" width="258" height="71"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
-                                <state key="normal" title="Select Music">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="EO3-nj-e7n" kind="show" identifier="goMusicSelecter" id="et1-Hl-zLV"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MHE-pP-Xz1">
                                 <rect key="frame" x="243" y="454" width="28" height="25"/>
                                 <state key="normal" title="Button" image="skip.png"/>
@@ -155,7 +145,7 @@
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BkF-cs-hJq">
-                                <rect key="frame" x="0.0" y="297" width="375" height="74"/>
+                                <rect key="frame" x="-1" y="284" width="375" height="74"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -179,7 +169,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="volume.png" translatesAutoresizingMaskIntoConstraints="NO" id="Z0p-Zk-Gpd">
-                                <rect key="frame" x="40" y="540" width="17" height="22"/>
+                                <rect key="frame" x="40" y="541" width="17" height="22"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="volume_mute.png" translatesAutoresizingMaskIntoConstraints="NO" id="LMy-JB-bI9">
                                 <rect key="frame" x="318" y="540" width="30" height="24"/>
@@ -196,11 +186,36 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H5k-kQ-GDu">
-                                <rect key="frame" x="1" y="364" width="375" height="40"/>
+                                <rect key="frame" x="0.0" y="333" width="375" height="40"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="qY8-1t-8NT">
+                                <rect key="frame" x="78" y="420" width="217" height="2"/>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="--:--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BaB-nU-pno">
+                                <rect key="frame" x="13" y="410" width="56" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="--:--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="weu-Wh-J9J">
+                                <rect key="frame" x="299" y="410" width="56" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0OY-hB-OGH">
+                                <rect key="frame" x="59" y="172" width="258" height="71"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <state key="normal" title="Select Music">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="goMusicSelect:" destination="4x4-hH-VSf" eventType="touchUpInside" id="SZP-n4-d4x"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -208,12 +223,16 @@
                     <connections>
                         <outlet property="barButton" destination="JQn-5R-qN1" id="0df-uk-kzr"/>
                         <outlet property="changeVolume" destination="LwN-cW-kra" id="jic-JL-h3g"/>
+                        <outlet property="endTime" destination="weu-Wh-J9J" id="3a2-GU-NeU"/>
                         <outlet property="musicArtist" destination="H5k-kQ-GDu" id="EQD-1D-hac"/>
                         <outlet property="musicSelect" destination="0OY-hB-OGH" id="7d9-cQ-4t5"/>
                         <outlet property="musicTitle" destination="BkF-cs-hJq" id="CTh-1c-TTt"/>
                         <outlet property="playButton" destination="EvT-re-KzX" id="6Ew-rH-XJm"/>
                         <outlet property="segmentControl" destination="LwS-pG-XLa" id="6UT-DM-XXg"/>
+                        <outlet property="startTime" destination="BaB-nU-pno" id="HqM-lc-s81"/>
                         <outlet property="stopButton" destination="uzq-jg-sz2" id="rgD-sz-pFO"/>
+                        <segue destination="EO3-nj-e7n" kind="show" identifier="goMusicSelecter" id="FgY-82-LC5"/>
+                        <segue destination="ifT-CD-4Rq" kind="show" identifier="goMusicSelecter2" id="euQ-9m-U29"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t7N-F1-gzL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -235,20 +254,14 @@
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DVn-Bw-kmF">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
-                                    <navigationItem title="Music" id="ka9-9R-HZt">
-                                        <barButtonItem key="leftBarButtonItem" title="cancel" id="lfN-pr-cbm">
-                                            <connections>
-                                                <segue destination="4x4-hH-VSf" kind="presentation" modalTransitionStyle="coverVertical" id="fav-Xl-Nwm"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
+                                    <navigationItem title="Music" id="ka9-9R-HZt"/>
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ijx-zb-iPc">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" selectionStyle="default" indentationWidth="10" id="ejY-r8-p1X">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="ejY-r8-p1X">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ejY-r8-p1X" id="9rl-Af-T0F">
@@ -269,10 +282,61 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="navigationItemLabel" destination="ka9-9R-HZt" id="G1M-cO-KqN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lD1-qv-OmG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1518.5" y="791.5"/>
+            <point key="canvasLocation" x="1543.5" y="482.5"/>
+        </scene>
+        <!--Music Select Mood-->
+        <scene sceneID="hk2-MZ-c3q">
+            <objects>
+                <viewController id="ifT-CD-4Rq" customClass="MusicSelectMood" customModule="MusiCar2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="asa-Fj-PnZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="ODM-cv-OR6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oXy-k2-9Nz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EXz-kO-KEj">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell2" id="sQ3-rn-Yi6">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sQ3-rn-Yi6" id="PNx-rO-Foh">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="4x4-hH-VSf" kind="presentation" identifier="backMusicController2" modalTransitionStyle="coverVertical" id="8kf-mF-puL"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="ifT-CD-4Rq" id="WdI-qI-Hx1"/>
+                                    <outlet property="delegate" destination="ifT-CD-4Rq" id="OzV-uA-bW4"/>
+                                </connections>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gkp-rY-jer">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Music" id="QiB-Zh-J1y"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YeG-VO-L5j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1543.5" y="1221.5"/>
         </scene>
     </scenes>
     <resources>
@@ -285,6 +349,6 @@
         <image name="volume_mute.png" width="45" height="34"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fav-Xl-Nwm"/>
+        <segue reference="akr-Pv-81J"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -14,6 +14,7 @@ import RealmSwift
 class AppDelegate: UIResponder, UIApplicationDelegate,NSXMLParserDelegate {
 
     var window: UIWindow?
+    
     //xmlパース
     var isArtist:Bool = false
     var isTitle:Bool = false
@@ -48,6 +49,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate,NSXMLParserDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        /// バックグラウンドでも再生できるand Bluetooth対応カテゴリに設定する
+        let session = AVAudioSession.sharedInstance()
+        do {
+            try session.setCategory(AVAudioSessionCategoryPlayback)
+        } catch  {
+            // エラー処理
+            fatalError("カテゴリ設定失敗")
+        }
+        // sessionのアクティブ化
+        do {
+            try session.setActive(true)
+        } catch {
+            // audio session有効化失敗時の処理
+            // (ここではエラーとして停止している）
+            fatalError("session有効化失敗")
+        }
+//        UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+        
+        
         let config = Realm.Configuration(
             // 新しいスキーマバージョンを設定します。以前のバージョンより大きくなければなりません。
             // （スキーマバージョンを設定したことがなければ、最初は0が設定されています）
@@ -69,7 +89,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,NSXMLParserDelegate {
         
         // Realmファイルを開こうとしたときスキーマバージョンが異なれば、
         // 自動的にマイグレーションが実行されます
+        
+        //dataを全部削除
         let realm = try! Realm()
+        try! realm.write{
+            realm.deleteAll()
+        }
         
         artists = songQuery.get()
         
@@ -219,7 +244,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,NSXMLParserDelegate {
         image = ""
         ngo = ""
     }
-
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

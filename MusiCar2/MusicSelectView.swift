@@ -4,8 +4,6 @@ import AVFoundation
 
 class MusicSelectView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var navigationItemLabel:UINavigationItem!
-    
     var artists: [ArtistInfo] = []
     var songQuery: SongQuery = SongQuery()
     var audio: AVAudioPlayer! = nil

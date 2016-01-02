@@ -35,6 +35,7 @@ class MusicSelectMood: UIViewController, UITableViewDelegate, UITableViewDataSou
         // UInt64だとうまくいかなかった。バグ？
         var songId   :  NSNumber
     }
+    
     var goodSongs: [GoodMusic] = []
     var badSongs: [BadMusic] = []
     var itemCount:Int!
@@ -43,7 +44,7 @@ class MusicSelectMood: UIViewController, UITableViewDelegate, UITableViewDataSou
     override func viewDidLoad() {
         
         let realm = try! Realm()
-        let goods = realm.objects(Music).filter("mood = 'Excited' OR mood = 'Fiery' OR mood = 'UrgentDefiant' OR mood = 'Aggressive' OR mood = 'Rowdy' OR mood = 'Energizing' OR mood = 'Empowering' OR mood = 'Stirring' OR mood = 'Lively' OR mood = 'Upbeat'")
+        let goods = realm.objects(Music).filter("mood = 'Excited' && id != 0 OR mood = 'Fiery' && id != 0 OR mood = 'UrgentDefiant' && id != 0 OR mood = 'Aggressive' && id != 0 OR mood = 'Rowdy' && id != 0 OR mood = 'Energizing' && id != 0 OR mood = 'Empowering' && id != 0 OR mood = 'Stirring' && id != 0 OR mood = 'Lively' && id != 0 OR mood = 'Upbeat' && id != 0 ")
         
         for good in goods{
             let goodMusic: GoodMusic = GoodMusic(
@@ -55,7 +56,7 @@ class MusicSelectMood: UIViewController, UITableViewDelegate, UITableViewDataSou
             )
             goodSongs.append(goodMusic)
         }
-        let bads = realm.objects(Music).filter("mood = 'Peaceful' OR mood = 'Romantic' OR mood = 'Sentimental' OR mood = 'Tender' OR mood = 'Easygoing' OR mood = 'Yearning' OR mood = 'Sophisticated' OR mood = 'Sensual' OR mood = 'Cool' OR mood = 'Gritty' OR mood = 'Somber' OR mood = 'Melancholy' OR mood = 'Serious' OR mood = 'Brooding'")
+        let bads = realm.objects(Music).filter("mood = 'Peaceful' && id != 0 OR mood = 'Romantic' && id != 0 OR mood = 'Sentimental' && id != 0 OR mood = 'Tender' && id != 0 OR mood = 'Easygoing' && id != 0 OR mood = 'Yearning' && id != 0 OR mood = 'Sophisticated' && id != 0 OR mood = 'Sensual' && id != 0 OR mood = 'Cool' && id != 0 OR mood = 'Gritty' && id != 0 OR mood = 'Somber' && id != 0 OR mood = 'Melancholy' && id != 0 OR mood = 'Serious' && id != 0 OR mood = 'Brooding' AND id != 0 ")
         for bad in bads{
             let badMusic: BadMusic = BadMusic(
                 albumTitle: bad.album,
@@ -138,7 +139,7 @@ class MusicSelectMood: UIViewController, UITableViewDelegate, UITableViewDataSou
             musicTitle = goodSongs[indexPath.row].songTitle
             musicArtist = goodSongs[indexPath.row].artistName
             artistNum = 0
-            songNum = indexPath.row
+            songNum = 0
         }else if(indexPath.section == 1){
             let url: NSURL = NSURL(string: "\(badSongs[indexPath.row].songUrl)")!
             // 再生
@@ -146,8 +147,8 @@ class MusicSelectMood: UIViewController, UITableViewDelegate, UITableViewDataSou
             audio.play()
             musicTitle = badSongs[indexPath.row].songTitle
             musicArtist = badSongs[indexPath.row].artistName
-            artistNum = 1
-            songNum = indexPath.row
+            artistNum = 0
+            songNum = 0
         }
     
         MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = [MPMediaItemPropertyArtist : "\(musicArtist)",  MPMediaItemPropertyTitle : "\(musicTitle)", MPMediaItemPropertyPlaybackDuration: audio.duration, MPNowPlayingInfoPropertyElapsedPlaybackTime: audio.currentTime]

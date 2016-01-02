@@ -10,6 +10,8 @@ class MusicControllerView: UIViewController {
     @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var skipButton: UIButton!
+    @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var musicTitle: UILabel!
     @IBOutlet weak var barButton: UIBarButtonItem!
     @IBOutlet weak var musicSelect: UIButton!
@@ -17,6 +19,7 @@ class MusicControllerView: UIViewController {
     @IBOutlet weak var changeVolume: UIView!
     @IBOutlet weak var startTime: UILabel!
     @IBOutlet weak var endTime: UILabel!
+    
     
     
     //外部から受け取る変数たち
@@ -29,7 +32,7 @@ class MusicControllerView: UIViewController {
     var songQuery: SongQuery = SongQuery()
     
     //modeセレクト
-    var mode:Int = 1
+    var mode:Int!
     let segueIdentifiers = ["goMusicSelecter2", "goMusicSelecter","goMusicSelecter"]
     
     var sTime:Int = 0
@@ -45,6 +48,9 @@ class MusicControllerView: UIViewController {
             audio = try? AVAudioPlayer(contentsOfURL: url)
         }
         
+        mode = 0
+        skipButton.enabled = false
+        previousButton.enabled = false
         
         //playボタンを隠す
         playButton.hidden = true
@@ -84,7 +90,7 @@ class MusicControllerView: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
-        
+        //volumeを変えられるようにする
         changeVolume.backgroundColor = UIColor.clearColor()
         let myVolumeView:MPVolumeView = MPVolumeView(frame: self.changeVolume.bounds)
         changeVolume.addSubview(myVolumeView)
@@ -104,12 +110,20 @@ class MusicControllerView: UIViewController {
         switch sender.selectedSegmentIndex {
         case 0:
             mode = 0
+            skipButton.enabled = false
+            previousButton.enabled = false
             print("セグメント0")
         case 1:
             mode = 1
+            skipButton.enabled = true
+            previousButton.enabled = true
+
             print("セグメント1")
         case 2:
             mode = 2
+            skipButton.enabled = true
+            previousButton.enabled = true
+
             print("セグメント2")
         default:
             print("Error")
@@ -173,7 +187,7 @@ class MusicControllerView: UIViewController {
                     audio = try? AVAudioPlayer(contentsOfURL: url)
                     audio.play()
                 }
-                //シャッフルモードの場合
+            //シャッフルモードの場合
             }else if(mode == 2){
                 artistNum = Int(arc4random_uniform(UInt32(artists.count)))
                 songNum = Int(arc4random_uniform(UInt32(artists[artistNum].songs.count)))
@@ -259,34 +273,38 @@ class MusicControllerView: UIViewController {
                 playButton.hidden = false
                 playButton.enabled = true
             }else if(event?.subtype == UIEventSubtype.RemoteControlNextTrack){
-                audio.stop()
-                if(audio != nil){
-                    //normalもーどの場合
-                    if(mode == 1){
-                        if(songNum == artists[artistNum].songs.count - 1 ){
-                            artistNum++
-                            songNum = 0
-                            let url: NSURL = artists[artistNum].songs[songNum].songUrl
-                            audio = try? AVAudioPlayer(contentsOfURL: url)
-                            audio.play()
-                        }else{
-                            songNum++
+                if(mode != 0){
+                    audio.stop()
+                    if(audio != nil){
+                        //normalもーどの場合
+                        if(mode == 1){
+                            if(songNum == artists[artistNum].songs.count - 1 ){
+                                artistNum++
+                                songNum = 0
+                                let url: NSURL = artists[artistNum].songs[songNum].songUrl
+                                audio = try? AVAudioPlayer(contentsOfURL: url)
+                                audio.play()
+                            }else{
+                                songNum++
+                                let url: NSURL = artists[artistNum].songs[songNum].songUrl
+                                audio = try? AVAudioPlayer(contentsOfURL: url)
+                                audio.play()
+                            }
+                            //シャッフルモードの場合
+                        }else if(mode == 2){
+                            artistNum = Int(arc4random_uniform(UInt32(artists.count)))
+                            songNum = Int(arc4random_uniform(UInt32(artists[artistNum].songs.count)))
                             let url: NSURL = artists[artistNum].songs[songNum].songUrl
                             audio = try? AVAudioPlayer(contentsOfURL: url)
                             audio.play()
                         }
-                        //シャッフルモードの場合
-                    }else if(mode == 2){
-                        artistNum = Int(arc4random_uniform(UInt32(artists.count)))
-                        songNum = Int(arc4random_uniform(UInt32(artists[artistNum].songs.count)))
-                        let url: NSURL = artists[artistNum].songs[songNum].songUrl
-                        audio = try? AVAudioPlayer(contentsOfURL: url)
-                        audio.play()
+                        musicTitle.text = artists[artistNum].songs[songNum].songTitle
+                        musicArtist.text = artists[artistNum].songs[songNum].artistName
+                        MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = [MPMediaItemPropertyArtist : "\(artists[artistNum].songs[songNum].artistName)",  MPMediaItemPropertyTitle : "\(artists[artistNum].songs[songNum].songTitle)", MPMediaItemPropertyPlaybackDuration: audio.duration, MPNowPlayingInfoPropertyElapsedPlaybackTime: audio.currentTime]
                     }
-                    musicTitle.text = artists[artistNum].songs[songNum].songTitle
-                    musicArtist.text = artists[artistNum].songs[songNum].artistName
                 }
             }else if(event?.subtype == UIEventSubtype.RemoteControlPreviousTrack){
+                if(mode != 0){
                 audio.stop()
                 if(audio != nil){
                     if(songNum == 0 ){
@@ -303,12 +321,13 @@ class MusicControllerView: UIViewController {
                     }
                     musicTitle.text = artists[artistNum].songs[songNum].songTitle
                     musicArtist.text = artists[artistNum].songs[songNum].artistName
+                    MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = [MPMediaItemPropertyArtist : "\(artists[artistNum].songs[songNum].artistName)",  MPMediaItemPropertyTitle : "\(artists[artistNum].songs[songNum].songTitle)", MPMediaItemPropertyPlaybackDuration: audio.duration, MPNowPlayingInfoPropertyElapsedPlaybackTime: audio.currentTime]
+                    }
                 }
             }else{
                 print("error")
             }
         }
-        MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = [MPMediaItemPropertyArtist : "\(artists[artistNum].songs[songNum].artistName)",  MPMediaItemPropertyTitle : "\(artists[artistNum].songs[songNum].songTitle)", MPMediaItemPropertyPlaybackDuration: audio.duration, MPNowPlayingInfoPropertyElapsedPlaybackTime: audio.currentTime]
     }
 
 //    func onUpdate(timer : NSTimer){

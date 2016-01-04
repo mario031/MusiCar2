@@ -1,6 +1,7 @@
 import UIKit
 import MediaPlayer
 import AVFoundation
+import RealmSwift
 
 class MusicSelectView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -76,7 +77,19 @@ class MusicSelectView: UIViewController, UITableViewDelegate, UITableViewDataSou
         musicArtist = artists[indexPath.section].songs[indexPath.row].artistName
         artistNum = indexPath.section
         songNum = indexPath.row
-        MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = [MPMediaItemPropertyArtist : "\(artists[artistNum].songs[songNum].artistName)",  MPMediaItemPropertyTitle : "\(artists[artistNum].songs[songNum].songTitle)", MPMediaItemPropertyPlaybackDuration: audio.duration, MPNowPlayingInfoPropertyElapsedPlaybackTime: audio.currentTime]
+        let realm = try! Realm()
+        let images = realm.objects(Music).filter("title = '\(artists[indexPath.section].songs[indexPath.row].songTitle)'")
+        for image in images{
+            if(image.image != ""){
+            let url1 = NSURL(string: "\(image.image)")
+            let imageData :NSData = try! NSData(contentsOfURL: url1!, options: NSDataReadingOptions.DataReadingMappedIfSafe)
+            let image: UIImage = UIImage(data:imageData)!
+            let artwork = MPMediaItemArtwork(image: image)
+            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = [MPMediaItemPropertyArtist : "\(artists[artistNum].songs[songNum].artistName)",  MPMediaItemPropertyTitle : "\(artists[artistNum].songs[songNum].songTitle)", MPMediaItemPropertyArtwork: artwork ,MPMediaItemPropertyPlaybackDuration: audio.duration, MPNowPlayingInfoPropertyElapsedPlaybackTime: audio.currentTime]
+            }else{
+                MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = [MPMediaItemPropertyArtist : "\(artists[artistNum].songs[songNum].artistName)",  MPMediaItemPropertyTitle : "\(artists[artistNum].songs[songNum].songTitle)", MPMediaItemPropertyPlaybackDuration: audio.duration, MPNowPlayingInfoPropertyElapsedPlaybackTime: audio.currentTime]
+            }
+        }
         performSegueWithIdentifier("backMusicController", sender: nil)
     }
     

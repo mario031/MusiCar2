@@ -207,7 +207,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0OY-hB-OGH">
-                                <rect key="frame" x="59" y="172" width="258" height="71"/>
+                                <rect key="frame" x="59" y="93" width="258" height="71"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                 <state key="normal" title="Select Music">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>

@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		02B2583B06363DACFC9907D9 /* Pods_MusiCar2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F0188224868E0AFBBBB7664 /* Pods_MusiCar2Tests.framework */; };
 		A38CAC5941532CAADDF3F3F9 /* Pods_MusiCar2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A06E063E47CBEDFC99F2327 /* Pods_MusiCar2.framework */; };
+		B13BCCC81C3D818F005D3881 /* SwiftyJSON in Resources */ = {isa = PBXBuildFile; fileRef = B13BCCC71C3D818F005D3881 /* SwiftyJSON */; };
+		B13BCCCA1C3D82B6005D3881 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B13BCCC91C3D82B6005D3881 /* SwiftyJSON.framework */; };
 		B159E4AE1C31E8B900511D3B /* realm-swift-0.97.0 in Resources */ = {isa = PBXBuildFile; fileRef = B159E4AD1C31E8B900511D3B /* realm-swift-0.97.0 */; };
-		B17721641C35A3C40093EF49 /* Mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17721631C35A3C40093EF49 /* Mode.swift */; };
 		B17721661C370F6A0093EF49 /* MusicSelectMood.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17721651C370F6A0093EF49 /* MusicSelectMood.swift */; };
 		B1ABBE841C31D3AA00105545 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ABBE831C31D3AA00105545 /* AppDelegate.swift */; };
 		B1ABBE861C31D3AA00105545 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ABBE851C31D3AA00105545 /* ViewController.swift */; };
@@ -61,9 +62,11 @@
 		097A660B9C8B55040FAAD3BA /* Pods-MusiCar2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusiCar2.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusiCar2/Pods-MusiCar2.release.xcconfig"; sourceTree = "<group>"; };
 		4A06E063E47CBEDFC99F2327 /* Pods_MusiCar2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusiCar2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F0188224868E0AFBBBB7664 /* Pods_MusiCar2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusiCar2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B13BCCC51C3D809D005D3881 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		B13BCCC71C3D818F005D3881 /* SwiftyJSON */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwiftyJSON; path = ../SwiftyJSON; sourceTree = "<group>"; };
+		B13BCCC91C3D82B6005D3881 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		B156D4E81C31E9F900A7736F /* MusiCar2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MusiCar2-Bridging-Header.h"; sourceTree = "<group>"; };
 		B159E4AD1C31E8B900511D3B /* realm-swift-0.97.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "realm-swift-0.97.0"; path = "../../Downloads/realm-swift-0.97.0"; sourceTree = "<group>"; };
-		B17721631C35A3C40093EF49 /* Mode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mode.swift; sourceTree = "<group>"; };
 		B17721651C370F6A0093EF49 /* MusicSelectMood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicSelectMood.swift; sourceTree = "<group>"; };
 		B1ABBE801C31D3AA00105545 /* MusiCar2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusiCar2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1ABBE831C31D3AA00105545 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B13BCCCA1C3D82B6005D3881 /* SwiftyJSON.framework in Frameworks */,
 				B1ABBEB41C31D3E100105545 /* MediaPlayer.framework in Frameworks */,
 				B1ABBEB21C31D3B900105545 /* AVFoundation.framework in Frameworks */,
 				A38CAC5941532CAADDF3F3F9 /* Pods_MusiCar2.framework in Frameworks */,
@@ -134,6 +138,8 @@
 		4DAF549E38B409D99BA349A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B13BCCC91C3D82B6005D3881 /* SwiftyJSON.framework */,
+				B13BCCC51C3D809D005D3881 /* SwiftyJSON.framework */,
 				4A06E063E47CBEDFC99F2327 /* Pods_MusiCar2.framework */,
 				5F0188224868E0AFBBBB7664 /* Pods_MusiCar2Tests.framework */,
 			);
@@ -154,6 +160,7 @@
 		B1ABBE771C31D3AA00105545 = {
 			isa = PBXGroup;
 			children = (
+				B13BCCC71C3D818F005D3881 /* SwiftyJSON */,
 				B159E4AD1C31E8B900511D3B /* realm-swift-0.97.0 */,
 				B1ABBEB31C31D3E100105545 /* MediaPlayer.framework */,
 				B1ABBEB11C31D3B900105545 /* AVFoundation.framework */,
@@ -194,7 +201,6 @@
 				B1ABBE8F1C31D3AA00105545 /* Info.plist */,
 				B1ABBED41C31D5AA00105545 /* SongQuery.swift */,
 				B1ABBED61C31D5B500105545 /* Music.swift */,
-				B17721631C35A3C40093EF49 /* Mode.swift */,
 			);
 			path = MusiCar2;
 			sourceTree = "<group>";
@@ -356,6 +362,7 @@
 				B1ABBEC41C31D45000105545 /* play.png in Resources */,
 				B1ABBEC51C31D45000105545 /* stop.png in Resources */,
 				B1ABBEC21C31D45000105545 /* music3.jpg in Resources */,
+				B13BCCC81C3D818F005D3881 /* SwiftyJSON in Resources */,
 				B1ABBEC81C31D45000105545 /* onpu.png in Resources */,
 				B159E4AE1C31E8B900511D3B /* realm-swift-0.97.0 in Resources */,
 				B1ABBECD1C31D57000105545 /* user.xml in Resources */,
@@ -486,7 +493,6 @@
 			files = (
 				B1ABBED11C31D59200105545 /* MusicSelectView.swift in Sources */,
 				B1ABBED31C31D59F00105545 /* SearchControllerView.swift in Sources */,
-				B17721641C35A3C40093EF49 /* Mode.swift in Sources */,
 				B1ABBE861C31D3AA00105545 /* ViewController.swift in Sources */,
 				B1ABBED51C31D5AA00105545 /* SongQuery.swift in Sources */,
 				B1ABBED71C31D5B500105545 /* Music.swift in Sources */,
@@ -634,6 +640,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = MusiCar2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = rei.MusiCar2;
@@ -648,6 +658,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = MusiCar2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = rei.MusiCar2;

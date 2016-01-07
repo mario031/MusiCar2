@@ -1,14 +1,17 @@
+source 'https://github.com/CocoaPods/Specs.git'
 # Uncomment this line to define a global platform for your project
-# platform :ios, '8.0'
+platform :ios, '8.0'
 # Uncomment this line if you're using Swift
 use_frameworks!
 
-target 'MusiCar2', exclusive: true do
+target 'MusiCar2' do
 pod 'RealmSwift'
+pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 end
 
-target 'MusiCar2Tests', exclusive: true do
+target 'MusiCar2Tests' do
 pod 'RealmSwift' 
+pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 end
 
 target 'MusiCar2UITests' do

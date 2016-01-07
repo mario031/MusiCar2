@@ -5,12 +5,14 @@
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "78FF9485CDA44FB468825734744813DDD1D4255F" : 0,
-    "3A512EA959362D5457676EF2F9E0869AE28B995A" : 0
+    "3A512EA959362D5457676EF2F9E0869AE28B995A" : 0,
+    "C861FC00CEE0F6A6BE81FCFF6785FAA78C58EBB3" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "588EC9DD-0B8C-4259-8100-E0CEAB5CFA93",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "78FF9485CDA44FB468825734744813DDD1D4255F" : "MusiCar\/",
-    "3A512EA959362D5457676EF2F9E0869AE28B995A" : "MusiCar2\/"
+    "3A512EA959362D5457676EF2F9E0869AE28B995A" : "MusiCar2\/",
+    "C861FC00CEE0F6A6BE81FCFF6785FAA78C58EBB3" : "..\/Downloads\/realm-swift-0.97.0\/SwiftyJSON"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "MusiCar2",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -25,6 +27,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mario031\/MusiCar.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "78FF9485CDA44FB468825734744813DDD1D4255F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/SwiftyJSON\/SwiftyJSON.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C861FC00CEE0F6A6BE81FCFF6785FAA78C58EBB3"
     }
   ]
 }

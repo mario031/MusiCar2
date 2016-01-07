@@ -4,6 +4,7 @@ import UIKit
 import MediaPlayer
 import AVFoundation
 import RealmSwift
+import SwiftyJSON
 
 class MusicControllerView: UIViewController, AVAudioPlayerDelegate {
     
@@ -116,6 +117,10 @@ class MusicControllerView: UIViewController, AVAudioPlayerDelegate {
             mode = 0
             skipButton.enabled = false
             previousButton.enabled = false
+            if(audio.duration - audio.currentTime == 10){
+                
+            }
+            
             print("Mood Mode")
         case 1:
             mode = 1

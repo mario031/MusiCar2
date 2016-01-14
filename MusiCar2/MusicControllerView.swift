@@ -6,6 +6,7 @@ import AVFoundation
 import RealmSwift
 import SwiftyJSON
 
+
 class MusicControllerView: UIViewController, AVAudioPlayerDelegate {
     
     @IBOutlet weak var segmentControl: UISegmentedControl!
@@ -117,9 +118,6 @@ class MusicControllerView: UIViewController, AVAudioPlayerDelegate {
             mode = 0
             skipButton.enabled = false
             previousButton.enabled = false
-            if(audio.duration - audio.currentTime == 10){
-                
-            }
             
             print("Mood Mode")
         case 1:
@@ -295,6 +293,10 @@ class MusicControllerView: UIViewController, AVAudioPlayerDelegate {
     //曲が終わったら次の曲を流す
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
         if(flag == true){
+            //moodモードの場合
+            if(mode == 0){
+                NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "getMoodData:", userInfo: nil, repeats: false)
+            }
             //normalモードのとき
             if(mode == 1){
                 if(songNum == artists[artistNum].songs.count - 1 && artistNum != artists.count - 1){
@@ -491,6 +493,10 @@ class MusicControllerView: UIViewController, AVAudioPlayerDelegate {
 //            endTime.text   = String(audio.duration - audio.currentTime)
 //        }
 //    }
+    
+    func getMoodData(timer : NSTimer){
+        print("曲終った5秒後")
+    }
     
     //backボタンを押した時音楽を止めて前画面に戻る
     @IBAction func pushBackButton(sender: UIBarButtonItem) {

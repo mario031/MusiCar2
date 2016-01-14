@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-MusiCar2.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,27 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2E5959E8F0FA1DB13005C2FDAD42A312</key>
+		<key>055A798028D27636503C5EEE72F10C6A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2E6DF1F0FB1F0B8F98174A611366F75D</key>
+		<key>432ECC54282C84882B482CCB4CF227FC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AAF15C743DF08174E9E067D91A7912DB</key>
+		<key>5B8B27FD8476FB33B344D1BB389A7779</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BCD4625EF678FAED2481ACD3984D82CF</key>
+		<key>794BF811F88A09A6180A058A80322F60</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D8E2461862DE07C1B73B9B1C69D7AD72</key>
+		<key>7B29FBED9637D523B24788DB144153C8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C1239EF03A84A004D12BB8FFDE240D7F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

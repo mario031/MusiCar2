@@ -5,13 +5,13 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'MusiCar2' do
-pod 'RealmSwift'
-pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
+  pod 'RealmSwift'
+  pod 'Alamofire'
+  pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 end
 
 target 'MusiCar2Tests' do
 pod 'RealmSwift' 
-pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 end
 
 target 'MusiCar2UITests' do

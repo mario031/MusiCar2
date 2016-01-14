@@ -49,6 +49,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,NSXMLParserDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        //バックグランドで実行されるインターバルを指定する
+        UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(10)
+        
         /// バックグラウンドでも再生できるand Bluetooth対応カテゴリに設定する
         let session = AVAudioSession.sharedInstance()
         do {
@@ -243,6 +246,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate,NSXMLParserDelegate {
         mood = ""
         image = ""
         ngo = ""
+    }
+    
+    func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        completionHandler(UIBackgroundFetchResult.NewData)
+        postSmile()
+    }
+    
+    func postSmile() -> Void{
+        print("ngo")
     }
     
     func applicationWillResignActive(application: UIApplication) {

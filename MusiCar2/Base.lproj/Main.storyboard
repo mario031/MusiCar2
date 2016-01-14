@@ -191,21 +191,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="qY8-1t-8NT">
-                                <rect key="frame" x="78" y="420" width="217" height="2"/>
-                            </progressView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="--:--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BaB-nU-pno">
-                                <rect key="frame" x="13" y="410" width="56" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="--:--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="weu-Wh-J9J">
-                                <rect key="frame" x="299" y="410" width="56" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0OY-hB-OGH">
                                 <rect key="frame" x="59" y="93" width="258" height="71"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>
@@ -223,7 +208,6 @@
                     <connections>
                         <outlet property="barButton" destination="JQn-5R-qN1" id="0df-uk-kzr"/>
                         <outlet property="changeVolume" destination="LwN-cW-kra" id="jic-JL-h3g"/>
-                        <outlet property="endTime" destination="weu-Wh-J9J" id="3a2-GU-NeU"/>
                         <outlet property="musicArtist" destination="H5k-kQ-GDu" id="EQD-1D-hac"/>
                         <outlet property="musicSelect" destination="0OY-hB-OGH" id="7d9-cQ-4t5"/>
                         <outlet property="musicTitle" destination="BkF-cs-hJq" id="CTh-1c-TTt"/>
@@ -231,7 +215,6 @@
                         <outlet property="previousButton" destination="nb2-a2-wBy" id="PL1-AZ-M4e"/>
                         <outlet property="segmentControl" destination="LwS-pG-XLa" id="6UT-DM-XXg"/>
                         <outlet property="skipButton" destination="MHE-pP-Xz1" id="8Gi-ba-K9Z"/>
-                        <outlet property="startTime" destination="BaB-nU-pno" id="HqM-lc-s81"/>
                         <outlet property="stopButton" destination="uzq-jg-sz2" id="rgD-sz-pFO"/>
                         <segue destination="EO3-nj-e7n" kind="show" identifier="goMusicSelecter" id="FgY-82-LC5"/>
                         <segue destination="ifT-CD-4Rq" kind="show" identifier="goMusicSelecter2" id="euQ-9m-U29"/>

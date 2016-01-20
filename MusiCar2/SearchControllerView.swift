@@ -10,6 +10,8 @@ class SearchControllerView: UIViewController, AVCaptureVideoDataOutputSampleBuff
     var myDevice : AVCaptureDevice!
     var myOutput : AVCaptureVideoDataOutput!
     
+    var data_mood:[String] = []
+    
     var songQuery:SongQuery = SongQuery()
     
     var timer:NSTimer!
@@ -121,15 +123,36 @@ class SearchControllerView: UIViewController, AVCaptureVideoDataOutputSampleBuff
             let dataString = NSString(data:data!, encoding:NSUTF8StringEncoding) as! String
             let json = JSON(data:data!)
             let happyFace = json["responses"][0]["faceAnnotations"][0]["joyLikelihood"]
-           
+            
             if(happyFace.string != nil){
-                print(happyFace)
+                data_mood.append(happyFace.stringValue)
+                let data:NSString = "data=\(data_mood)"
+                let myData:NSData = data.dataUsingEncoding(NSUTF8StringEncoding)!
+                //URLの指定
+                let url: NSURL! = NSURL(string: "http://life-cloud.ht.sfc.keio.ac.jp/~mario/MusiCar/mood.php")
+                let request = NSMutableURLRequest(URL: url)
+                
+                //POSTを指定
+                request.HTTPMethod = "POST"
+                //Dataをセット
+                request.HTTPBody = myData
+                if(data_mood.count == 10){
+                    NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: self.postMood)
+                    data_mood.removeAll()
+                }
+                print(happyFace.stringValue)
             }else if(happyFace.string == nil){
                 print("no face")
             }
             
         }
         
+    }
+    func postMood(res:NSURLResponse?,data:NSData?,error:NSError?){
+        if data != nil{
+            let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding) as! String
+            print(dataString)
+        }
     }
 }
 

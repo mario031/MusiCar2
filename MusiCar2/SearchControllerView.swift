@@ -16,6 +16,8 @@ class SearchControllerView: UIViewController, AVCaptureVideoDataOutputSampleBuff
     
     var timer:NSTimer!
     
+    var userDefault: NSUserDefaults = NSUserDefaults()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //barButtonフォント
@@ -126,7 +128,7 @@ class SearchControllerView: UIViewController, AVCaptureVideoDataOutputSampleBuff
             
             if(happyFace.string != nil){
                 data_mood.append(happyFace.stringValue)
-                let data:NSString = "data=\(data_mood)"
+                let data:NSString = "data=\(data_mood)&team=\(userDefault.objectForKey("team") as! String)"
                 let myData:NSData = data.dataUsingEncoding(NSUTF8StringEncoding)!
                 //URLの指定
                 let url: NSURL! = NSURL(string: "http://life-cloud.ht.sfc.keio.ac.jp/~mario/MusiCar/mood.php")

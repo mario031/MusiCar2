@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		02B2583B06363DACFC9907D9 /* Pods_MusiCar2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F0188224868E0AFBBBB7664 /* Pods_MusiCar2Tests.framework */; };
 		A38CAC5941532CAADDF3F3F9 /* Pods_MusiCar2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A06E063E47CBEDFC99F2327 /* Pods_MusiCar2.framework */; };
+		B1240A6D1C4FF6AA0009904E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1240A6C1C4FF6AA0009904E /* LoginViewController.swift */; };
 		B13CC07E1C3F7C54006A0638 /* satomi.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B13CC07D1C3F7C54006A0638 /* satomi.jpg */; };
 		B13FA8861C487701008E7DAC /* CameraUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FA8851C487701008E7DAC /* CameraUtil.swift */; };
 		B17721661C370F6A0093EF49 /* MusicSelectMood.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17721651C370F6A0093EF49 /* MusicSelectMood.swift */; };
@@ -62,8 +63,10 @@
 		097A660B9C8B55040FAAD3BA /* Pods-MusiCar2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusiCar2.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusiCar2/Pods-MusiCar2.release.xcconfig"; sourceTree = "<group>"; };
 		4A06E063E47CBEDFC99F2327 /* Pods_MusiCar2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusiCar2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F0188224868E0AFBBBB7664 /* Pods_MusiCar2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusiCar2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1240A6C1C4FF6AA0009904E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B13CC07D1C3F7C54006A0638 /* satomi.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = satomi.jpg; path = ../../../Downloads/satomi.jpg; sourceTree = "<group>"; };
 		B13FA8851C487701008E7DAC /* CameraUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraUtil.swift; sourceTree = "<group>"; };
+		B1423CD41C50C51F00D6921F /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = "Pods/../build/Debug-iphoneos/SVProgressHUD.framework"; sourceTree = "<group>"; };
 		B156D4E81C31E9F900A7736F /* MusiCar2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MusiCar2-Bridging-Header.h"; sourceTree = "<group>"; };
 		B17721651C370F6A0093EF49 /* MusicSelectMood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicSelectMood.swift; sourceTree = "<group>"; };
 		B1ABBE801C31D3AA00105545 /* MusiCar2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusiCar2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +140,7 @@
 		4DAF549E38B409D99BA349A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B1423CD41C50C51F00D6921F /* SVProgressHUD.framework */,
 				B1ECDC981C3E4355002D4885 /* SwiftyJSON.framework */,
 				B1ABBEB31C31D3E100105545 /* MediaPlayer.framework */,
 				B1ABBEB11C31D3B900105545 /* AVFoundation.framework */,
@@ -192,6 +196,7 @@
 				B1ABBED01C31D59200105545 /* MusicSelectView.swift */,
 				B17721651C370F6A0093EF49 /* MusicSelectMood.swift */,
 				B1ABBED21C31D59F00105545 /* SearchControllerView.swift */,
+				B1240A6C1C4FF6AA0009904E /* LoginViewController.swift */,
 				B1ABBE871C31D3AA00105545 /* Main.storyboard */,
 				B1ABBE8A1C31D3AA00105545 /* Assets.xcassets */,
 				B1ABBE8C1C31D3AA00105545 /* LaunchScreen.storyboard */,
@@ -496,6 +501,7 @@
 				B1ABBED71C31D5B500105545 /* Music.swift in Sources */,
 				B17721661C370F6A0093EF49 /* MusicSelectMood.swift in Sources */,
 				B1ABBECF1C31D58600105545 /* MusicControllerView.swift in Sources */,
+				B1240A6D1C4FF6AA0009904E /* LoginViewController.swift in Sources */,
 				B1ABBE841C31D3AA00105545 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

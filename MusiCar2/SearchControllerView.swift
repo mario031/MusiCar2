@@ -151,7 +151,7 @@ class SearchControllerView: UIViewController, AVCaptureVideoDataOutputSampleBuff
     func postMood(res:NSURLResponse?,data:NSData?,error:NSError?){
         if data != nil{
             let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding) as! String
-            print(dataString)
+//            print(dataString)
         }
     }
 }

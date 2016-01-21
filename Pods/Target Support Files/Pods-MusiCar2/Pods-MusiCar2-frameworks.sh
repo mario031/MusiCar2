@@ -87,11 +87,13 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-MusiCar2/Alamofire.framework"
   install_framework "Pods-MusiCar2/Realm.framework"
   install_framework "Pods-MusiCar2/RealmSwift.framework"
+  install_framework "Pods-MusiCar2/SVProgressHUD.framework"
   install_framework "Pods-MusiCar2/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-MusiCar2/Alamofire.framework"
   install_framework "Pods-MusiCar2/Realm.framework"
   install_framework "Pods-MusiCar2/RealmSwift.framework"
+  install_framework "Pods-MusiCar2/SVProgressHUD.framework"
   install_framework "Pods-MusiCar2/SwiftyJSON.framework"
 fi

@@ -7,6 +7,7 @@ use_frameworks!
 target 'MusiCar2' do
   pod 'RealmSwift'
   pod 'Alamofire'
+  pod 'SVProgressHUD', '~> 1.1'
   pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 end
 

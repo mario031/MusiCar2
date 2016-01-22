@@ -27,6 +27,8 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var userDefault: NSUserDefaults = NSUserDefaults()
     
     override func viewDidLoad() {
+        let uuid = NSUUID().UUIDString
+        print(uuid)
         
         makeLabel.hidden = true
         makeTextfield.hidden = true
@@ -41,7 +43,7 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
         makeGroup.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
         makeGroup.setTitleColor(UIColor.cyanColor(), forState: UIControlState.Highlighted)
         makeGroup.titleLabel?.font = UIFont.systemFontOfSize(27.0)
-        makeGroup.layer.position = CGPoint(x: self.view.bounds.width/2, y: 270)
+        makeGroup.layer.position = CGPoint(x: self.view.bounds.width/2, y: 390)
         makeGroup.addTarget(self, action: "make:", forControlEvents: .TouchUpInside)
         self.view.addSubview(makeGroup)
         
@@ -50,12 +52,23 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
         joinGroup.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
         joinGroup.setTitleColor(UIColor.cyanColor(), forState: UIControlState.Highlighted)
         joinGroup.titleLabel?.font = UIFont.systemFontOfSize(27.0)
-        joinGroup.layer.position = CGPoint(x: self.view.bounds.width/2, y: 370)
+        joinGroup.layer.position = CGPoint(x: self.view.bounds.width/2, y: 470)
         joinGroup.addTarget(self, action: "join:", forControlEvents: .TouchUpInside)
         self.view.addSubview(joinGroup)
         
         groupLabel.backgroundColor = UIColor.whiteColor()
-        groupLabel.layer.cornerRadius = 10.0
+        groupLabel.layer.borderColor = UIColor.blackColor().CGColor
+        groupLabel.layer.borderWidth = 0.5
+        groupLabel.layer.masksToBounds = true
+        groupLabel.layer.cornerRadius = 5.0
+        
+        makeTextfield.layer.borderWidth = 0.5
+        makeTextfield.layer.masksToBounds = true
+        makeTextfield.layer.cornerRadius = 5.0
+        
+        endButton.layer.borderWidth = 0.5
+        endButton.layer.masksToBounds = true
+        endButton.layer.cornerRadius = 5.0
         
         
         groupLabel.text = ""
@@ -77,6 +90,7 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
             endButton.enabled = false
             groupLabel.hidden = true
             groupNameLabel.hidden = true
+
             // アニメーションの時間を2秒に設定.
             UIView.animateWithDuration(0.5,animations: { () -> Void in
         
@@ -96,17 +110,18 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
             makeBool = true
             makeLabel.hidden = true
             makeTextfield.hidden = true
-            groupLabel.hidden = false
-            groupNameLabel.hidden = false
-            self.sakusei.hidden = true
-            self.sakusei.enabled = false
+            makeTextfield.resignFirstResponder()
+            sakusei.hidden = true
+            sakusei.enabled = false
             // アニメーションの時間を2秒に設定.
             UIView.animateWithDuration(0.5,animations: { () -> Void in
                     
-            self.makeGroup.layer.position = CGPoint(x: self.view.bounds.width/2,y: 270)
+            self.makeGroup.layer.position = CGPoint(x: self.view.bounds.width/2,y: 390)
                     
                 // アニメーション完了時の処理
             }) { (Bool) -> Void in
+                self.groupLabel.hidden = false
+                self.groupNameLabel.hidden = false
                 self.joinGroup.hidden = false
                 self.joinGroup.enabled = true
             }
@@ -146,15 +161,16 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
             joinBool = true
             joinLabel.hidden = true
             tableview.hidden = true
-            groupLabel.hidden = false
-            groupNameLabel.hidden = false
+            
             // アニメーションの時間を2秒に設定.
             UIView.animateWithDuration(0.5,animations: { () -> Void in
                 
-                self.joinGroup.layer.position = CGPoint(x: self.view.bounds.width/2,y: 370)
+                self.joinGroup.layer.position = CGPoint(x: self.view.bounds.width/2,y: 470)
                 
                 // アニメーション完了時の処理
                 }) { (Bool) -> Void in
+                    self.groupLabel.hidden = false
+                    self.groupNameLabel.hidden = false
                     self.makeGroup.hidden = false
                     self.makeGroup.enabled = true
             }
@@ -241,15 +257,17 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
         joinBool = true
         joinLabel.hidden = true
         tableview.hidden = true
-        groupLabel.hidden = false
-        groupNameLabel.hidden = false
+        
+        
         // アニメーションの時間を2秒に設定.
         UIView.animateWithDuration(0.5,animations: { () -> Void in
             
-            self.joinGroup.layer.position = CGPoint(x: self.view.bounds.width/2,y: 370)
+            self.joinGroup.layer.position = CGPoint(x: self.view.bounds.width/2,y: 470)
             
             // アニメーション完了時の処理
             }) { (Bool) -> Void in
+                self.groupLabel.hidden = false
+                self.groupNameLabel.hidden = false
                 self.makeGroup.hidden = false
                 self.makeGroup.enabled = true
         }

@@ -128,23 +128,24 @@ class SearchControllerView: UIViewController, AVCaptureVideoDataOutputSampleBuff
             
             if(happyFace.string != nil){
                 data_mood.append(happyFace.stringValue)
-                let data:NSString = "data=\(data_mood)&team=\(userDefault.objectForKey("team") as! String)"
-                let myData:NSData = data.dataUsingEncoding(NSUTF8StringEncoding)!
-                //URLの指定
-                let url: NSURL! = NSURL(string: "http://life-cloud.ht.sfc.keio.ac.jp/~mario/MusiCar/mood.php")
-                let request = NSMutableURLRequest(URL: url)
-                
-                //POSTを指定
-                request.HTTPMethod = "POST"
-                //Dataをセット
-                request.HTTPBody = myData
-                if(data_mood.count == 10){
-                    NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: self.postMood)
-                    data_mood.removeAll()
-                }
                 print(happyFace.stringValue)
             }else if(happyFace.string == nil){
+                data_mood.append("no_face")
                 print("no face")
+            }
+            let data:NSString = "data=\(data_mood)&team=\(userDefault.objectForKey("team") as! String)&name=\(userDefault.objectForKey("name") as! String)"
+            let myData:NSData = data.dataUsingEncoding(NSUTF8StringEncoding)!
+            //URLの指定
+            let url: NSURL! = NSURL(string: "http://life-cloud.ht.sfc.keio.ac.jp/~mario/MusiCar/insert.php")
+            let request = NSMutableURLRequest(URL: url)
+            
+            //POSTを指定
+            request.HTTPMethod = "POST"
+            //Dataをセット
+            request.HTTPBody = myData
+            if(data_mood.count == 10){
+                NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: self.postMood)
+                data_mood.removeAll()
             }
             
         }

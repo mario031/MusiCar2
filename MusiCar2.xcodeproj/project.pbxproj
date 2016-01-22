@@ -12,6 +12,7 @@
 		B1240A6D1C4FF6AA0009904E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1240A6C1C4FF6AA0009904E /* LoginViewController.swift */; };
 		B13CC07E1C3F7C54006A0638 /* satomi.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B13CC07D1C3F7C54006A0638 /* satomi.jpg */; };
 		B13FA8861C487701008E7DAC /* CameraUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FA8851C487701008E7DAC /* CameraUtil.swift */; };
+		B1423CD71C5200A900D6921F /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1423CD61C5200A900D6921F /* RegisterViewController.swift */; };
 		B17721661C370F6A0093EF49 /* MusicSelectMood.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17721651C370F6A0093EF49 /* MusicSelectMood.swift */; };
 		B1ABBE841C31D3AA00105545 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ABBE831C31D3AA00105545 /* AppDelegate.swift */; };
 		B1ABBE861C31D3AA00105545 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ABBE851C31D3AA00105545 /* ViewController.swift */; };
@@ -67,6 +68,7 @@
 		B13CC07D1C3F7C54006A0638 /* satomi.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = satomi.jpg; path = ../../../Downloads/satomi.jpg; sourceTree = "<group>"; };
 		B13FA8851C487701008E7DAC /* CameraUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraUtil.swift; sourceTree = "<group>"; };
 		B1423CD41C50C51F00D6921F /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = "Pods/../build/Debug-iphoneos/SVProgressHUD.framework"; sourceTree = "<group>"; };
+		B1423CD61C5200A900D6921F /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		B156D4E81C31E9F900A7736F /* MusiCar2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MusiCar2-Bridging-Header.h"; sourceTree = "<group>"; };
 		B17721651C370F6A0093EF49 /* MusicSelectMood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicSelectMood.swift; sourceTree = "<group>"; };
 		B1ABBE801C31D3AA00105545 /* MusiCar2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusiCar2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,6 +206,7 @@
 				B1ABBED41C31D5AA00105545 /* SongQuery.swift */,
 				B1ABBED61C31D5B500105545 /* Music.swift */,
 				B13FA8851C487701008E7DAC /* CameraUtil.swift */,
+				B1423CD61C5200A900D6921F /* RegisterViewController.swift */,
 			);
 			path = MusiCar2;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B13FA8861C487701008E7DAC /* CameraUtil.swift in Sources */,
+				B1423CD71C5200A900D6921F /* RegisterViewController.swift in Sources */,
 				B1ABBED11C31D59200105545 /* MusicSelectView.swift in Sources */,
 				B1ABBED31C31D59F00105545 /* SearchControllerView.swift in Sources */,
 				B1ABBE861C31D3AA00105545 /* ViewController.swift in Sources */,

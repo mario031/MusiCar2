@@ -44,8 +44,10 @@ class MusicControllerView: UIViewController, AVAudioPlayerDelegate {
     var sTime:Int = 0
     var eTime:Int = 0
     
+    var userDefault: NSUserDefaults = NSUserDefaults()
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         artists = songQuery.get()
@@ -290,12 +292,29 @@ class MusicControllerView: UIViewController, AVAudioPlayerDelegate {
         }
         
     }
+    //表情の平均値を取得する
+    func postTeam(res:NSURLResponse?,data:NSData?,error:NSError?){
+        if data != nil{
+            let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding) as! String
+            print(dataString)
+        }
+    }
     //曲が終わったら次の曲を流す
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
         if(flag == true){
             //moodモードの場合
             if(mode == 0){
-                NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "getMoodData:", userInfo: nil, repeats: false)
+                let data:NSString = "team=\(userDefault.objectForKey("team") as! String)"
+                let myData:NSData = data.dataUsingEncoding(NSUTF8StringEncoding)!
+                //URLの指定
+                let url: NSURL! = NSURL(string: "http://life-cloud.ht.sfc.keio.ac.jp/~mario/MusiCar/mood.php")
+                let request = NSMutableURLRequest(URL: url)
+                
+                //POSTを指定
+                request.HTTPMethod = "POST"
+                //Dataをセット
+                request.HTTPBody = myData
+                NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: self.postTeam)
             }
             //normalモードのとき
             if(mode == 1){
@@ -493,10 +512,6 @@ class MusicControllerView: UIViewController, AVAudioPlayerDelegate {
 //            endTime.text   = String(audio.duration - audio.currentTime)
 //        }
 //    }
-    
-    func getMoodData(timer : NSTimer){
-        print("曲終った5秒後")
-    }
     
     //backボタンを押した時音楽を止めて前画面に戻る
     @IBAction func pushBackButton(sender: UIBarButtonItem) {

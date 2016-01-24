@@ -1,10 +1,13 @@
 
 import UIKit
-import Foundation
+import AVFoundation
 import SVProgressHUD
 import SwiftyJSON
+import SpriteKit
 
 class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UITextFieldDelegate{
+    
+    var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate //AppDelegateのインスタンスを取得
     
     @IBOutlet weak var endButton: UIButton!
     @IBOutlet weak var groupLabel: UILabel!
@@ -15,6 +18,20 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var groupNameLabel: UILabel!
     @IBOutlet weak var sakusei: UIButton!
     
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var addScroll: UIScrollView!
+    @IBOutlet weak var takePictureButton: UIButton!
+    
+    var txtActiveField: UITextField!
+    
+    // セッション.
+    var mySession : AVCaptureSession!
+    // デバイス.
+    var myDevice : AVCaptureDevice!
+    // 画像のアウトプット.
+    var myImageOutput : AVCaptureStillImageOutput!
+    var myVideoLayer : AVCaptureVideoPreviewLayer!
+    
     var makeGroup: UIButton!
     var joinGroup: UIButton!
     
@@ -24,11 +41,12 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //mysqlのテーブル(グループ名)を格納する
     var tableData:[String] = []
     
+    var timer:NSTimer!
+    
+    
     var userDefault: NSUserDefaults = NSUserDefaults()
     
     override func viewDidLoad() {
-        let uuid = NSUUID().UUIDString
-        print(uuid)
         
         makeLabel.hidden = true
         makeTextfield.hidden = true
@@ -37,6 +55,9 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableview.hidden = true
         sakusei.hidden = true
         sakusei.enabled = false
+        takePictureButton.hidden = true
+        takePictureButton.enabled = false
+
         
         makeGroup = UIButton(frame: CGRectMake(0,0,self.view.bounds.width, 50))
         makeGroup.setTitle("グループを作成する", forState: .Normal)
@@ -70,13 +91,106 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
         endButton.layer.masksToBounds = true
         endButton.layer.cornerRadius = 5.0
         
+        takePictureButton.layer.borderColor = UIColor.whiteColor().CGColor
+        takePictureButton.layer.borderWidth = 3.0
+        takePictureButton.layer.masksToBounds = true
+        takePictureButton.layer.cornerRadius = 30
         
-        groupLabel.text = ""
+        if(userDefault.objectForKey("team") != nil){
+            groupLabel.text = userDefault.objectForKey("team") as? String
+        }
+        
+    }
+    override func viewWillAppear(animated: Bool) {
+        userDefault.setObject("", forKey: "number")
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: "handleKeyboardWillShowNotification:", name: UIKeyboardWillShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: "handleKeyboardWillHideNotification:", name: UIKeyboardWillHideNotification, object: nil)
+    }
+    // Viewが非表示になるたびに呼び出されるメソッド
+    override func viewDidDisappear(animated: Bool) {
+//        mySession.stopRunning()
+//        timer.invalidate()
+        super.viewDidDisappear(animated)
+        
+        // NSNotificationCenterの解除処理
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        notificationCenter.removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool{
+    //NSTimerIntervalで指定された秒数毎に呼び出されるメソッド.
+    func onUpdate(timer : NSTimer){
+        if(userDefault.objectForKey("number") != nil){
+            self.makeTextfield.text = userDefault.objectForKey("number") as! String
+            userDefault.removeObjectForKey("number")
+        }
+    }
+    
+    @IBAction func takePicture(sender: UIButton) {
+        // ビデオ出力に接続.
+        let myVideoConnection = myImageOutput.connectionWithMediaType(AVMediaTypeVideo)
         
-        textField.resignFirstResponder()
+        // 接続から画像を取得.
+        self.myImageOutput.captureStillImageAsynchronouslyFromConnection(myVideoConnection, completionHandler: { (imageDataBuffer, error) -> Void in
+            
+            // 取得したImageのDataBufferをJpegに変換.
+            let myImageData : NSData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataBuffer)
+            
+            // JpegからUIIMageを作成.
+            let image : UIImage = UIImage(data: myImageData)!
+            CloudVisionRequest().textRequest(image)
+            //タイマーを作る.
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onUpdate:", userInfo: nil, repeats: true)
+            
+        })
+        
+    }
+    //画面がタップされた際にキーボードを閉じる処理
+    func tapGesture(sender: UITapGestureRecognizer) {
+        makeTextfield.resignFirstResponder()
+        
+    }
+    
+    func initCamera() -> Bool {
+        // セッションの作成.
+        mySession = AVCaptureSession()
+        
+        // デバイス一覧の取得.
+        let devices = AVCaptureDevice.devices()
+        
+        // バックカメラをmyDeviceに格納.
+        for device in devices{
+            if(device.position == AVCaptureDevicePosition.Back){
+                myDevice = device as! AVCaptureDevice
+            }
+        }
+        
+        do{
+        // バックカメラからVideoInputを取得.
+        let videoInput = try AVCaptureDeviceInput.init(device: myDevice)
+            // セッションに追加.
+            mySession.addInput(videoInput)
+        }
+        catch let error as NSError {
+            print(error)
+        }
+        // 出力先を生成.
+        myImageOutput = AVCaptureStillImageOutput()
+        
+        // セッションに追加.
+        mySession.addOutput(myImageOutput)
+        
+        // 画像を表示するレイヤーを生成.
+        myVideoLayer = AVCaptureVideoPreviewLayer.init(session: mySession)
+        myVideoLayer.frame = imageView.frame
+        myVideoLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        
+        // Viewに追加.
+        self.view.layer.addSublayer(myVideoLayer)
+        
+        // セッション開始.
+        mySession.startRunning()
         
         return true
     }
@@ -90,6 +204,7 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
             endButton.enabled = false
             groupLabel.hidden = true
             groupNameLabel.hidden = true
+            
 
             // アニメーションの時間を2秒に設定.
             UIView.animateWithDuration(0.5,animations: { () -> Void in
@@ -98,12 +213,19 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
                 // アニメーション完了時の処理
             }) { (Bool) -> Void in
+                if self.initCamera(){
+                    self.mySession.startRunning()
+                }
+                self.takePictureButton.hidden = false
+                self.takePictureButton.enabled = true
+                self.view.bringSubviewToFront(self.makeTextfield)
+                self.view.bringSubviewToFront(self.takePictureButton)
                 self.makeLabel.hidden = false
                 self.makeTextfield.hidden = false
                 self.makeTextfield.enabled = true
                 self.sakusei.hidden = false
                 self.sakusei.enabled = true
-            }
+                self.myVideoLayer.hidden = false            }
         }else{
             endButton.hidden = false
             endButton.enabled = true
@@ -113,6 +235,14 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
             makeTextfield.resignFirstResponder()
             sakusei.hidden = true
             sakusei.enabled = false
+            myVideoLayer.hidden = false
+            self.view.sendSubviewToBack(addScroll)
+            self.view.sendSubviewToBack(takePictureButton)
+            takePictureButton.hidden = true
+            takePictureButton.enabled = false
+            myVideoLayer.hidden = true
+            mySession.stopRunning()
+            
             // アニメーションの時間を2秒に設定.
             UIView.animateWithDuration(0.5,animations: { () -> Void in
                     
@@ -178,22 +308,23 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func sakusei(sender: UIButton) {
-        let data:NSString = "team=\(makeTextfield.text! as String)"
+        mySession.stopRunning()
+        let data:NSString = "uid=\(userDefault.objectForKey("uid") as! String)&number=\(makeTextfield.text)&name\(userDefault.objectForKey("name") as! String) Car&make=yes"
         let myData:NSData = data.dataUsingEncoding(NSUTF8StringEncoding)!
         //URLの指定
-        let url: NSURL! = NSURL(string: "http://life-cloud.ht.sfc.keio.ac.jp/~mario/MusiCar/login.php")
+        let url: NSURL! = NSURL(string: "http://life-cloud.ht.sfc.keio.ac.jp/~mario/MusiCar/login_make.php")
         let request = NSMutableURLRequest(URL: url)
         
         //POSTを指定
         request.HTTPMethod = "POST"
         //Dataをセット
         request.HTTPBody = myData
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: self.postTeam)
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: self.postTeam1)
         
-        groupLabel.text = makeTextfield.text
+        groupLabel.text = "\(userDefault.objectForKey("name") as! String) Car"
     }
     //team名をPOSTして帰ってきたときに実行される
-    func postTeam(res:NSURLResponse?,data:NSData?,error:NSError?){
+    func postTeam1(res:NSURLResponse?,data:NSData?,error:NSError?){
         if data != nil{
             let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding) as! String
             print(dataString)
@@ -201,15 +332,20 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 SVProgressHUD.showSuccessWithStatus("グループを作成しました")
             }else if(dataString == "lose"){
                 SVProgressHUD.showErrorWithStatus("グループの作成に失敗しました")
-            }else if(dataString == "this table is already exist"){
-                SVProgressHUD.showErrorWithStatus("このグループ名はすでに存在します")
             }
+        }
+    }
+    func postTeam2(res:NSURLResponse?,data:NSData?,error:NSError?){
+        if data != nil{
+            let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding) as! String
+            print(dataString)
         }
     }
     //cellにtableを格納する
     func getData(res:NSURLResponse?,data:NSData?,error:NSError?){
         if data != nil{
             let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding) as! String
+            print(dataString)
             let dataSeparate = dataString.componentsSeparatedByString(",")
             tableData.removeAll()
             
@@ -250,28 +386,89 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // 選択したグループ名を表示
     func tableView( tableView: UITableView, didSelectRowAtIndexPath indexPath:NSIndexPath ) {
-        groupLabel.text = tableData[indexPath.row]
-        
-        endButton.hidden = false
-        endButton.enabled = true
-        joinBool = true
-        joinLabel.hidden = true
-        tableview.hidden = true
-        
-        
-        // アニメーションの時間を2秒に設定.
-        UIView.animateWithDuration(0.5,animations: { () -> Void in
+        let alertController = UIAlertController(title: "\(tableData[indexPath.row])に参加してよろしいですか？", message: "", preferredStyle: .Alert)
+        let otherAction = UIAlertAction(title: "OK", style: .Default) {
+            action in
             
-            self.joinGroup.layer.position = CGPoint(x: self.view.bounds.width/2,y: 470)
+            self.groupLabel.text = self.tableData[indexPath.row]
             
-            // アニメーション完了時の処理
-            }) { (Bool) -> Void in
-                self.groupLabel.hidden = false
-                self.groupNameLabel.hidden = false
-                self.makeGroup.hidden = false
-                self.makeGroup.enabled = true
+            let data:NSString = "uid=\(self.userDefault.objectForKey("uid") as! String)&name=\(self.tableData[indexPath.row])&make=no"
+            let myData:NSData = data.dataUsingEncoding(NSUTF8StringEncoding)!
+            //URLの指定
+            let url: NSURL! = NSURL(string: "http://life-cloud.ht.sfc.keio.ac.jp/~mario/MusiCar/login_join.php")
+            let request = NSMutableURLRequest(URL: url)
+            
+            //POSTを指定
+            request.HTTPMethod = "POST"
+            //Dataをセット
+            request.HTTPBody = myData
+            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: self.postTeam2)
+            
+            self.endButton.hidden = false
+            self.endButton.enabled = true
+            self.joinBool = true
+            self.joinLabel.hidden = true
+            self.tableview.hidden = true
+            
+            
+            // アニメーションの時間を2秒に設定.
+            UIView.animateWithDuration(0.5,animations: { () -> Void in
+                
+                self.joinGroup.layer.position = CGPoint(x: self.view.bounds.width/2,y: 470)
+                
+                // アニメーション完了時の処理
+                }) { (Bool) -> Void in
+                    self.groupLabel.hidden = false
+                    self.groupNameLabel.hidden = false
+                    self.makeGroup.hidden = false
+                    self.makeGroup.enabled = true
+            }
+            }
+        let cancelAction = UIAlertAction(title: "CANCEL", style: .Cancel) {
+            action in
+            
         }
         
+        alertController.addAction(otherAction)
+        alertController.addAction(cancelAction)
+        presentViewController(alertController, animated: true, completion: nil)
+        
+    }
+    
+    //textFieldを編集する際に行われる処理
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        txtActiveField = textField //　編集しているtextFieldを新しいtextField型の変数に代入する
+        
+        return true
+    }
+    func textFieldShouldReturn(textField: UITextField) -> Bool{
+        self.view.bringSubviewToFront(takePictureButton)
+        textField.resignFirstResponder()
+        
+        return true
+    }
+    //キーボードが表示された時
+    func handleKeyboardWillShowNotification(notification: NSNotification) {
+        //郵便入れみたいなもの
+        let userInfo = notification.userInfo!
+        //キーボードの大きさを取得
+        let keyboardRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        // 画面のサイズを取得
+        let myBoundSize: CGSize = UIScreen.mainScreen().bounds.size
+        //　ViewControllerを基準にtextFieldの下辺までの距離を取得
+        var txtLimit = txtActiveField.frame.origin.y + txtActiveField.frame.height + 8.0
+        // ViewControllerの高さからキーボードの高さを引いた差分を取得
+        let kbdLimit = myBoundSize.height - keyboardRect.size.height
+        
+        //スクロールビューの移動距離設定
+        if txtLimit >= kbdLimit {
+            addScroll.contentOffset.y = txtLimit - kbdLimit + 30
+        }
+    }
+    
+    //ずらした分を戻す処理
+    func handleKeyboardWillHideNotification(notification: NSNotification) {
+        addScroll.contentOffset.y = 0
     }
 
     @IBAction func end(sender: UIButton) {

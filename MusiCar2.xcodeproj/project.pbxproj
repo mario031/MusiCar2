@@ -10,7 +10,7 @@
 		02B2583B06363DACFC9907D9 /* Pods_MusiCar2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F0188224868E0AFBBBB7664 /* Pods_MusiCar2Tests.framework */; };
 		A38CAC5941532CAADDF3F3F9 /* Pods_MusiCar2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A06E063E47CBEDFC99F2327 /* Pods_MusiCar2.framework */; };
 		B1240A6D1C4FF6AA0009904E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1240A6C1C4FF6AA0009904E /* LoginViewController.swift */; };
-		B13CC07E1C3F7C54006A0638 /* satomi.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B13CC07D1C3F7C54006A0638 /* satomi.jpg */; };
+		B132600B1C53754C00AF0ED7 /* CloudVisionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B132600A1C53754C00AF0ED7 /* CloudVisionRequest.swift */; };
 		B13FA8861C487701008E7DAC /* CameraUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FA8851C487701008E7DAC /* CameraUtil.swift */; };
 		B1423CD71C5200A900D6921F /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1423CD61C5200A900D6921F /* RegisterViewController.swift */; };
 		B17721661C370F6A0093EF49 /* MusicSelectMood.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17721651C370F6A0093EF49 /* MusicSelectMood.swift */; };
@@ -65,7 +65,7 @@
 		4A06E063E47CBEDFC99F2327 /* Pods_MusiCar2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusiCar2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F0188224868E0AFBBBB7664 /* Pods_MusiCar2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusiCar2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1240A6C1C4FF6AA0009904E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		B13CC07D1C3F7C54006A0638 /* satomi.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = satomi.jpg; path = ../../../Downloads/satomi.jpg; sourceTree = "<group>"; };
+		B132600A1C53754C00AF0ED7 /* CloudVisionRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudVisionRequest.swift; sourceTree = "<group>"; };
 		B13FA8851C487701008E7DAC /* CameraUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraUtil.swift; sourceTree = "<group>"; };
 		B1423CD41C50C51F00D6921F /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = "Pods/../build/Debug-iphoneos/SVProgressHUD.framework"; sourceTree = "<group>"; };
 		B1423CD61C5200A900D6921F /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -163,6 +163,35 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B132600C1C53785600AF0ED7 /* No View */ = {
+			isa = PBXGroup;
+			children = (
+				B1ABBED41C31D5AA00105545 /* SongQuery.swift */,
+				B1ABBED61C31D5B500105545 /* Music.swift */,
+				B13FA8851C487701008E7DAC /* CameraUtil.swift */,
+				B132600A1C53754C00AF0ED7 /* CloudVisionRequest.swift */,
+			);
+			name = "No View";
+			sourceTree = "<group>";
+		};
+		B132600D1C53787700AF0ED7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B1423CD61C5200A900D6921F /* RegisterViewController.swift */,
+				B1240A6C1C4FF6AA0009904E /* LoginViewController.swift */,
+				B1ABBE851C31D3AA00105545 /* ViewController.swift */,
+				B1ABBECE1C31D58600105545 /* MusicControllerView.swift */,
+				B1ABBED01C31D59200105545 /* MusicSelectView.swift */,
+				B17721651C370F6A0093EF49 /* MusicSelectMood.swift */,
+				B1ABBED21C31D59F00105545 /* SearchControllerView.swift */,
+				B1ABBE871C31D3AA00105545 /* Main.storyboard */,
+				B1ABBE8A1C31D3AA00105545 /* Assets.xcassets */,
+				B1ABBE8C1C31D3AA00105545 /* LaunchScreen.storyboard */,
+				B1ABBE8F1C31D3AA00105545 /* Info.plist */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		B1ABBE771C31D3AA00105545 = {
 			isa = PBXGroup;
 			children = (
@@ -188,25 +217,12 @@
 		B1ABBE821C31D3AA00105545 /* MusiCar2 */ = {
 			isa = PBXGroup;
 			children = (
+				B1ABBE831C31D3AA00105545 /* AppDelegate.swift */,
 				B156D4E81C31E9F900A7736F /* MusiCar2-Bridging-Header.h */,
 				B1ABBECC1C31D57000105545 /* user.xml */,
-				B13CC07D1C3F7C54006A0638 /* satomi.jpg */,
 				B1ABBECB1C31D45500105545 /* picture */,
-				B1ABBE831C31D3AA00105545 /* AppDelegate.swift */,
-				B1ABBE851C31D3AA00105545 /* ViewController.swift */,
-				B1ABBECE1C31D58600105545 /* MusicControllerView.swift */,
-				B1ABBED01C31D59200105545 /* MusicSelectView.swift */,
-				B17721651C370F6A0093EF49 /* MusicSelectMood.swift */,
-				B1ABBED21C31D59F00105545 /* SearchControllerView.swift */,
-				B1240A6C1C4FF6AA0009904E /* LoginViewController.swift */,
-				B1ABBE871C31D3AA00105545 /* Main.storyboard */,
-				B1ABBE8A1C31D3AA00105545 /* Assets.xcassets */,
-				B1ABBE8C1C31D3AA00105545 /* LaunchScreen.storyboard */,
-				B1ABBE8F1C31D3AA00105545 /* Info.plist */,
-				B1ABBED41C31D5AA00105545 /* SongQuery.swift */,
-				B1ABBED61C31D5B500105545 /* Music.swift */,
-				B13FA8851C487701008E7DAC /* CameraUtil.swift */,
-				B1423CD61C5200A900D6921F /* RegisterViewController.swift */,
+				B132600D1C53787700AF0ED7 /* View */,
+				B132600C1C53785600AF0ED7 /* No View */,
 			);
 			path = MusiCar2;
 			sourceTree = "<group>";
@@ -366,7 +382,6 @@
 				B1ABBEC71C31D45000105545 /* prev.png in Resources */,
 				B1ABBE8E1C31D3AA00105545 /* LaunchScreen.storyboard in Resources */,
 				B1ABBEC41C31D45000105545 /* play.png in Resources */,
-				B13CC07E1C3F7C54006A0638 /* satomi.jpg in Resources */,
 				B1ABBEC51C31D45000105545 /* stop.png in Resources */,
 				B1ABBEC21C31D45000105545 /* music3.jpg in Resources */,
 				B1ABBEC81C31D45000105545 /* onpu.png in Resources */,
@@ -507,6 +522,7 @@
 				B1ABBECF1C31D58600105545 /* MusicControllerView.swift in Sources */,
 				B1240A6D1C4FF6AA0009904E /* LoginViewController.swift in Sources */,
 				B1ABBE841C31D3AA00105545 /* AppDelegate.swift in Sources */,
+				B132600B1C53754C00AF0ED7 /* CloudVisionRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

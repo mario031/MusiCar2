@@ -15,6 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,NSXMLParserDelegate {
 
     var window: UIWindow?
     
+    var data_mood:[String] = []
+    
     //xmlパース
     var isArtist:Bool = false
     var isTitle:Bool = false
@@ -48,9 +50,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate,NSXMLParserDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        let userDefaults:NSUserDefaults = NSUserDefaults()
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let firstViewController = storyBoard.instantiateViewControllerWithIdentifier("FirstViewController")
+        let loginViewController = storyBoard.instantiateViewControllerWithIdentifier("LoginViewController")
+        
+        if userDefaults.objectForKey("uid") != nil{
+            self.window?.rootViewController = firstViewController
+        }
+        else{
+            self.window?.rootViewController = loginViewController
+        }
         
         //バックグランドで実行されるインターバルを指定する
         UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(10)
+        UIApplication.sharedApplication().idleTimerDisabled = true
         
         /// バックグラウンドでも再生できるand Bluetooth対応カテゴリに設定する
         let session = AVAudioSession.sharedInstance()
@@ -68,7 +82,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,NSXMLParserDelegate {
             // (ここではエラーとして停止している）
             fatalError("session有効化失敗")
         }
-//        UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
         
         
         let config = Realm.Configuration(

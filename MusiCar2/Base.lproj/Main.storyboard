@@ -8,7 +8,7 @@
         <!--Register View Controller-->
         <scene sceneID="w0V-dj-LjL">
             <objects>
-                <viewController id="OT0-Md-gEU" customClass="RegisterViewController" customModule="MusiCar2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="OT0-Md-gEU" customClass="RegisterViewController" customModule="MusiCar2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="F6q-OW-4TI"/>
                         <viewControllerLayoutGuide type="bottom" id="2iV-6f-QTN"/>
@@ -69,24 +69,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t9i-pq-DzL">
-                                <rect key="frame" x="47" y="239" width="287" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N8F-f8-apY">
+                                <rect key="frame" x="47" y="235" width="293" height="50"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iwi-FW-81x" userLabel="Make Textfield">
-                                <rect key="frame" x="47" y="310" width="287" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="車のナンバーを撮影してください" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgf-DF-O72">
+                                <rect key="frame" x="0.0" y="82" width="378" height="49"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="aeK-4a-1n0" id="ZgA-fa-LAn"/>
-                                </connections>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="作成するグループ名を入力してください" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgf-DF-O72">
-                                <rect key="frame" x="9" y="239" width="378" height="55"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="参加するグループを選択してください" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mca-LJ-nfN">
@@ -122,6 +115,44 @@
                                     <outlet property="delegate" destination="aeK-4a-1n0" id="B0i-CF-PQp"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Group Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gC-Y8-cYL">
+                                <rect key="frame" x="47" y="209" width="301" height="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mvw-IN-TtG">
+                                <rect key="frame" x="285" y="610" width="116" height="47"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                <state key="normal" title="作成"/>
+                                <connections>
+                                    <action selector="sakusei:" destination="aeK-4a-1n0" eventType="touchUpInside" id="UNP-ff-qwZ"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dFa-Nd-eCl">
+                                <rect key="frame" x="0.0" y="134" width="376" height="478"/>
+                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="THL-3t-NgF">
+                                <rect key="frame" x="0.0" y="134" width="305" height="533"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iwi-FW-81x" userLabel="Make Textfield">
+                                        <rect key="frame" x="6" y="487" width="299" height="30"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="aeK-4a-1n0" id="ZgA-fa-LAn"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="olV-ag-Bqf">
+                                <rect key="frame" x="164" y="550" width="60" height="60"/>
+                                <color key="backgroundColor" red="0.61661430027173914" green="0.61661430027173914" blue="0.61661430027173914" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="takePicture:" destination="aeK-4a-1n0" eventType="touchUpInside" id="CJG-0m-Drf"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k5b-f4-h4i">
                                 <rect key="frame" x="137" y="592" width="101" height="50"/>
                                 <color key="backgroundColor" red="0.08618900121986893" green="0.087667422706234122" blue="0.089504076086956541" alpha="1" colorSpace="calibratedRGB"/>
@@ -135,33 +166,22 @@
                                     <segue destination="BYZ-38-t0r" kind="presentation" modalTransitionStyle="flipHorizontal" id="JXw-3X-YAm"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Group Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gC-Y8-cYL">
-                                <rect key="frame" x="47" y="209" width="301" height="22"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mvw-IN-TtG">
-                                <rect key="frame" x="128" y="511" width="116" height="47"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
-                                <state key="normal" title="作成"/>
-                                <connections>
-                                    <action selector="sakusei:" destination="aeK-4a-1n0" eventType="touchUpInside" id="UNP-ff-qwZ"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="addScroll" destination="THL-3t-NgF" id="P6L-K9-9kA"/>
                         <outlet property="endButton" destination="k5b-f4-h4i" id="xeH-5c-iOv"/>
-                        <outlet property="groupLabel" destination="t9i-pq-DzL" id="ntb-vj-rhC"/>
+                        <outlet property="groupLabel" destination="N8F-f8-apY" id="ZbW-IW-zkX"/>
                         <outlet property="groupNameLabel" destination="4gC-Y8-cYL" id="DgS-PA-xLM"/>
+                        <outlet property="imageView" destination="dFa-Nd-eCl" id="6aH-VL-Jns"/>
                         <outlet property="joinLabel" destination="mca-LJ-nfN" id="QUl-dr-zLF"/>
                         <outlet property="makeLabel" destination="qgf-DF-O72" id="gYt-hp-mxE"/>
                         <outlet property="makeTextfield" destination="iwi-FW-81x" id="gGm-J6-9ly"/>
                         <outlet property="sakusei" destination="Mvw-IN-TtG" id="KMS-Rb-TyL"/>
                         <outlet property="tableview" destination="2A5-Nx-Zqj" id="ZnL-D2-2lJ"/>
+                        <outlet property="takePictureButton" destination="olV-ag-Bqf" id="Vcm-WX-A0c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qve-48-JjQ" userLabel="First Responder" sceneMemberID="firstResponder"/>

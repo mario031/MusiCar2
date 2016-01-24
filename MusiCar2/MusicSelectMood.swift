@@ -24,7 +24,7 @@ struct BadMusic {
     var songId   :  NSNumber
 }
 
-class MusicSelectMood: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MusicSelectMood: UIViewController, UITableViewDelegate, UITableViewDataSource, AVCaptureVideoDataOutputSampleBufferDelegate {
     
     var audio: AVAudioPlayer! = nil
     

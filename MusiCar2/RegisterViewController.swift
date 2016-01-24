@@ -13,7 +13,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         let uid = NSUUID().UUIDString
         userDefault.setObject(uid, forKey: "uid")
-//        self.userDefault.setObject(name, forKey: "name")
         
         super.viewDidLoad()
         
@@ -50,7 +49,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate{
                 
                 let data:NSString = "name=\(self.nameTextField.text! as String)&uid=\(self.userDefault.objectForKey("uid") as! String)"
                 let myData:NSData = data.dataUsingEncoding(NSUTF8StringEncoding)!
-                let url: NSURL! = NSURL(string: "http://life-cloud.ht.sfc.keio.ac.jp/~mario/MusiCar/login.php")
+                let url: NSURL! = NSURL(string: "http://life-cloud.ht.sfc.keio.ac.jp/~mario/MusiCar/register.php")
                 let request = NSMutableURLRequest(URL: url)
                 
                 //POSTを指定
@@ -58,6 +57,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate{
                 //Dataをセット
                 request.HTTPBody = myData
                 NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: self.postLoginData)
+               
                 
                 let name = self.nameTextField.text!
                 self.userDefault.setObject(name, forKey: "name")

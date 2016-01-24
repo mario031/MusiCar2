@@ -304,10 +304,10 @@ class MusicControllerView: UIViewController, AVAudioPlayerDelegate {
         if(flag == true){
             //moodモードの場合
             if(mode == 0){
-                let data:NSString = "team=\(userDefault.objectForKey("team") as! String)"
+                let data:NSString = "uid=\(userDefault.objectForKey("uid") as! String)&team=\(userDefault.objectForKey("team") as! String)"
                 let myData:NSData = data.dataUsingEncoding(NSUTF8StringEncoding)!
                 //URLの指定
-                let url: NSURL! = NSURL(string: "http://life-cloud.ht.sfc.keio.ac.jp/~mario/MusiCar/mood.php")
+                let url: NSURL! = NSURL(string: "http://life-cloud.ht.sfc.keio.ac.jp/~mario/MusiCar/music.php")
                 let request = NSMutableURLRequest(URL: url)
                 
                 //POSTを指定

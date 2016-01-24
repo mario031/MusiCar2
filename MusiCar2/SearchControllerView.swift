@@ -10,8 +10,6 @@ class SearchControllerView: UIViewController, AVCaptureVideoDataOutputSampleBuff
     var myDevice : AVCaptureDevice!
     var myOutput : AVCaptureVideoDataOutput!
     
-    var data_mood:[String] = []
-    
     var songQuery:SongQuery = SongQuery()
     
     var timer:NSTimer!
@@ -23,20 +21,16 @@ class SearchControllerView: UIViewController, AVCaptureVideoDataOutputSampleBuff
         //barButtonフォント
         barBackButton.setTitleTextAttributes(NSDictionary(object: UIFont.boldSystemFontOfSize(20), forKey: NSFontAttributeName) as? [String : AnyObject], forState: UIControlState.Normal)
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "postSmile:", userInfo: nil, repeats: true)
+        if initCamera(){
+            mySession.startRunning()
+        }
     }
     override func viewDidDisappear(animated: Bool) {
-        timer.invalidate()
+        mySession.stopRunning()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func postSmile(timer: NSTimer){
-        if initCamera(){
-            mySession.startRunning()
-        }
     }
     
     func initCamera() -> Bool {
@@ -61,7 +55,7 @@ class SearchControllerView: UIViewController, AVCaptureVideoDataOutputSampleBuff
         myOutput.videoSettings = [ kCVPixelBufferPixelFormatTypeKey: Int(kCVPixelFormatType_32BGRA) ]
         do {
             try myDevice.lockForConfiguration()
-            myDevice.activeVideoMinFrameDuration = CMTimeMake(1, 15)
+            myDevice.activeVideoMinFrameDuration = CMTimeMake(1,2)
             myDevice.unlockForConfiguration()
         } catch {
             print("lock error")
@@ -89,74 +83,13 @@ class SearchControllerView: UIViewController, AVCaptureVideoDataOutputSampleBuff
         dispatch_sync(dispatch_get_main_queue(), {
             
             let image:UIImage = CameraUtil.imageFromSampleBuffer(sampleBuffer)
-            let pngImage = UIImagePNGRepresentation(image)
-            let base64String:String = pngImage!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
-            //            print(base64String)
-            let obj:[String:AnyObject] = [
-                "requests":[
-                    "image":[
-                        "content":"\(base64String)"
-                    ],
-                    "features":[
-                        "type":"FACE_DETECTION",
-                        "maxResults":1
-                    ]
-                ]
-            ]
-            let data = try! NSJSONSerialization.dataWithJSONObject(obj, options: NSJSONWritingOptions.PrettyPrinted)
-            //URLの指定
-            let url: NSURL! = NSURL(string: "https://vision.googleapis.com/v1alpha1/images:annotate?key=AIzaSyD1Fs8tbnNqBpKijuGrPqF9Ldpdt4uPlfo")
-            let request = NSMutableURLRequest(URL: url)
+            // アルバムに追加.
+//            UIImageWriteToSavedPhotosAlbum(image, self, nil, nil)
+            CloudVisionRequest().smileRequest(image)
             
-            request.setValue("application/json", forHTTPHeaderField: "Content-type")
-            
-            //POSTを指定
-            request.HTTPMethod = "POST"
-            //Dataをセット
-            request.HTTPBody = data
-            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: self.getHttp)
-            
-             self.mySession.stopRunning()
         })
     }
-    //レスポンスが帰ってきたら行う関数
-    func getHttp(res:NSURLResponse?,data:NSData?,error:NSError?){
-        if data != nil{
-            let dataString = NSString(data:data!, encoding:NSUTF8StringEncoding) as! String
-            let json = JSON(data:data!)
-            let happyFace = json["responses"][0]["faceAnnotations"][0]["joyLikelihood"]
-            
-            if(happyFace.string != nil){
-                data_mood.append(happyFace.stringValue)
-                print(happyFace.stringValue)
-            }else if(happyFace.string == nil){
-                data_mood.append("no_face")
-                print("no face")
-            }
-            let data:NSString = "data=\(data_mood)&team=\(userDefault.objectForKey("team") as! String)&name=\(userDefault.objectForKey("name") as! String)"
-            let myData:NSData = data.dataUsingEncoding(NSUTF8StringEncoding)!
-            //URLの指定
-            let url: NSURL! = NSURL(string: "http://life-cloud.ht.sfc.keio.ac.jp/~mario/MusiCar/insert.php")
-            let request = NSMutableURLRequest(URL: url)
-            
-            //POSTを指定
-            request.HTTPMethod = "POST"
-            //Dataをセット
-            request.HTTPBody = myData
-            if(data_mood.count == 10){
-                NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: self.postMood)
-                data_mood.removeAll()
-            }
-            
-        }
-        
-    }
-    func postMood(res:NSURLResponse?,data:NSData?,error:NSError?){
-        if data != nil{
-            let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding) as! String
-//            print(dataString)
-        }
-    }
+    
 }
 
 

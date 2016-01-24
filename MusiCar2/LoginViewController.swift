@@ -144,12 +144,15 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onUpdate:", userInfo: nil, repeats: true)
             
         })
-        
+        takePictureButton.backgroundColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 255)
     }
+    @IBAction func buttonHilighted(sender: UIButton) {
+        takePictureButton.backgroundColor = UIColor.grayColor()
+    }
+    
     //画面がタップされた際にキーボードを閉じる処理
     func tapGesture(sender: UITapGestureRecognizer) {
         makeTextfield.resignFirstResponder()
-        
     }
     
     func initCamera() -> Bool {
@@ -185,6 +188,7 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
         myVideoLayer = AVCaptureVideoPreviewLayer.init(session: mySession)
         myVideoLayer.frame = imageView.frame
         myVideoLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        myVideoLayer.zPosition = -10
         
         // Viewに追加.
         self.view.layer.addSublayer(myVideoLayer)
@@ -218,14 +222,16 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 }
                 self.takePictureButton.hidden = false
                 self.takePictureButton.enabled = true
-                self.view.bringSubviewToFront(self.makeTextfield)
+                self.myVideoLayer.hidden = false
                 self.view.bringSubviewToFront(self.takePictureButton)
+                self.view.bringSubviewToFront(self.addScroll)
+                self.view.bringSubviewToFront(self.makeTextfield)
                 self.makeLabel.hidden = false
                 self.makeTextfield.hidden = false
                 self.makeTextfield.enabled = true
                 self.sakusei.hidden = false
                 self.sakusei.enabled = true
-                self.myVideoLayer.hidden = false            }
+                           }
         }else{
             endButton.hidden = false
             endButton.enabled = true
@@ -309,7 +315,7 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func sakusei(sender: UIButton) {
         mySession.stopRunning()
-        let data:NSString = "uid=\(userDefault.objectForKey("uid") as! String)&number=\(makeTextfield.text)&name\(userDefault.objectForKey("name") as! String) Car&make=yes"
+        let data:NSString = "uid=\(userDefault.objectForKey("uid") as! String)&number=\(makeTextfield.text! as String)&name=\(userDefault.objectForKey("name") as! String) Car&make=yes"
         let myData:NSData = data.dataUsingEncoding(NSUTF8StringEncoding)!
         //URLの指定
         let url: NSURL! = NSURL(string: "http://life-cloud.ht.sfc.keio.ac.jp/~mario/MusiCar/login_make.php")
@@ -438,7 +444,6 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //textFieldを編集する際に行われる処理
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         txtActiveField = textField //　編集しているtextFieldを新しいtextField型の変数に代入する
-        
         return true
     }
     func textFieldShouldReturn(textField: UITextField) -> Bool{
@@ -456,13 +461,13 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // 画面のサイズを取得
         let myBoundSize: CGSize = UIScreen.mainScreen().bounds.size
         //　ViewControllerを基準にtextFieldの下辺までの距離を取得
-        var txtLimit = txtActiveField.frame.origin.y + txtActiveField.frame.height + 8.0
+        let txtLimit = txtActiveField.frame.origin.y + txtActiveField.frame.height + 8.0
         // ViewControllerの高さからキーボードの高さを引いた差分を取得
         let kbdLimit = myBoundSize.height - keyboardRect.size.height
         
         //スクロールビューの移動距離設定
         if txtLimit >= kbdLimit {
-            addScroll.contentOffset.y = txtLimit - kbdLimit + 30
+            addScroll.contentOffset.y = txtLimit - kbdLimit + 150
         }
     }
     

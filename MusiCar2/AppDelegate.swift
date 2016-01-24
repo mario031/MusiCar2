@@ -15,8 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,NSXMLParserDelegate {
 
     var window: UIWindow?
     
-    var data_mood:[String] = []
-    
     //xmlパース
     var isArtist:Bool = false
     var isTitle:Bool = false

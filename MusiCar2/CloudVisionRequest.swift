@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 import SwiftyJSON
+import SVProgressHUD
 
 public class CloudVisionRequest{
     
-    var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate //AppDelegateのインスタンスを取得
     
     var userDefault:NSUserDefaults = NSUserDefaults()
     
@@ -53,26 +53,35 @@ public class CloudVisionRequest{
             let happyFace = json["responses"][0]["faceAnnotations"][0]["joyLikelihood"]
 //            print(dataString)
             if(happyFace.string != nil){
-                appDelegate.data_mood.append(happyFace.stringValue)
+                let data:NSString = "smile=\(happyFace.stringValue)&uid=\(userDefault.objectForKey("uid") as! String)"
+                let myData:NSData = data.dataUsingEncoding(NSUTF8StringEncoding)!
+                //URLの指定
+                let url: NSURL! = NSURL(string: "http://life-cloud.ht.sfc.keio.ac.jp/~mario/MusiCar/insert.php")
+                let request = NSMutableURLRequest(URL: url)
+                
+                //POSTを指定
+                request.HTTPMethod = "POST"
+                //Dataをセット
+                request.HTTPBody = myData
+                NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: self.postMood)
                 print(happyFace.stringValue)
             }else if(happyFace.string == nil){
-                appDelegate.data_mood.append("no_face")
+                let data:NSString = "smile=no face&uid=\(userDefault.objectForKey("uid") as! String)"
+                let myData:NSData = data.dataUsingEncoding(NSUTF8StringEncoding)!
+                //URLの指定
+                let url: NSURL! = NSURL(string: "http://life-cloud.ht.sfc.keio.ac.jp/~mario/MusiCar/insert.php")
+                let request = NSMutableURLRequest(URL: url)
+                
+                //POSTを指定
+                request.HTTPMethod = "POST"
+                //Dataをセット
+                request.HTTPBody = myData
+                NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: self.postMood)
                 print("no face")
             }
-            let data:NSString = "smile=\(appDelegate.data_mood)&uid=\(userDefault.objectForKey("uid") as! String)"
-            let myData:NSData = data.dataUsingEncoding(NSUTF8StringEncoding)!
-            //URLの指定
-            let url: NSURL! = NSURL(string: "http://life-cloud.ht.sfc.keio.ac.jp/~mario/MusiCar/insert.php")
-            let request = NSMutableURLRequest(URL: url)
             
-            //POSTを指定
-            request.HTTPMethod = "POST"
-            //Dataをセット
-            request.HTTPBody = myData
-            if(appDelegate.data_mood.count == 10){
-                NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: self.postMood)
-                appDelegate.data_mood.removeAll()
-            }
+            
+            
             
         }
         
@@ -121,6 +130,9 @@ public class CloudVisionRequest{
             print(carNumber.stringValue)
             if(carNumber.string != nil){
                 userDefault.setObject(carNumber.stringValue, forKey: "number")
+            }
+            else {
+                SVProgressHUD.showErrorWithStatus("うまく読めませんでした")
             }
         }
     }

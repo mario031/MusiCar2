@@ -55,7 +55,7 @@ class SearchControllerView: UIViewController, AVCaptureVideoDataOutputSampleBuff
         myOutput.videoSettings = [ kCVPixelBufferPixelFormatTypeKey: Int(kCVPixelFormatType_32BGRA) ]
         do {
             try myDevice.lockForConfiguration()
-            myDevice.activeVideoMinFrameDuration = CMTimeMake(1,2)
+            myDevice.activeVideoMinFrameDuration = CMTimeMake(1,5)
             myDevice.unlockForConfiguration()
         } catch {
             print("lock error")

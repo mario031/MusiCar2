@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,NSXMLParserDelegate {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let firstViewController = storyBoard.instantiateViewControllerWithIdentifier("FirstViewController")
         let loginViewController = storyBoard.instantiateViewControllerWithIdentifier("LoginViewController")
-        
+//        userDefaults.removeObjectForKey("uid")
         if userDefaults.objectForKey("uid") != nil{
             self.window?.rootViewController = firstViewController
         }

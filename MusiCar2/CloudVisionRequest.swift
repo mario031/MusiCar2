@@ -64,7 +64,7 @@ public class CloudVisionRequest{
                 //Dataをセット
                 request.HTTPBody = myData
                 NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: self.postMood)
-                print(happyFace.stringValue)
+//                print(happyFace.stringValue)
             }else if(happyFace.string == nil){
                 let data:NSString = "smile=no face&uid=\(userDefault.objectForKey("uid") as! String)"
                 let myData:NSData = data.dataUsingEncoding(NSUTF8StringEncoding)!
@@ -77,7 +77,7 @@ public class CloudVisionRequest{
                 //Dataをセット
                 request.HTTPBody = myData
                 NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: self.postMood)
-                print("no face")
+//                print("no face")
             }
             
             

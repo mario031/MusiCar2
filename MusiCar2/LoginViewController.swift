@@ -328,18 +328,18 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
         //Dataをセット
         request.HTTPBody = myData
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: self.postTeam1)
-        
-        groupLabel.text = "\(userDefault.objectForKey("name") as! String) Car"
     }
+    
     //team名をPOSTして帰ってきたときに実行される
     func postTeam1(res:NSURLResponse?,data:NSData?,error:NSError?){
         if data != nil{
             let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding) as! String
             print(dataString)
-            if(dataString == "success"){
-                SVProgressHUD.showSuccessWithStatus("グループを作成しました")
-            }else if(dataString == "lose"){
+            if(dataString == "lose"){
                 SVProgressHUD.showErrorWithStatus("グループの作成に失敗しました")
+            }else{
+                SVProgressHUD.showSuccessWithStatus("グループの作成に成功しました")
+                groupLabel.text = dataString
             }
         }
     }
@@ -349,6 +349,7 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
             print(dataString)
         }
     }
+    
     //cellにtableを格納する
     func getData(res:NSURLResponse?,data:NSData?,error:NSError?){
         if data != nil{

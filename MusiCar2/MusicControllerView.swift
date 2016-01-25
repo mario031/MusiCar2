@@ -19,8 +19,8 @@ class MusicControllerView: UIViewController, AVAudioPlayerDelegate {
     @IBOutlet weak var musicSelect: UIButton!
     @IBOutlet weak var musicArtist: UILabel!
     @IBOutlet weak var changeVolume: UIView!
-    @IBOutlet weak var startTime: UILabel!
-    @IBOutlet weak var endTime: UILabel!
+//    @IBOutlet weak var startTime: UILabel!
+//    @IBOutlet weak var endTime: UILabel!
     
     
     
@@ -29,13 +29,12 @@ class MusicControllerView: UIViewController, AVAudioPlayerDelegate {
     var martist:String? = ""
     var artistNum:Int = 0
     var songNum:Int = 0
-    var goodNum:Int = 0
-    var badNum:Int = 0
     var audio: AVAudioPlayer! = nil
     var artists: [ArtistInfo] = []
     var songQuery: SongQuery = SongQuery()
     var goodSongs: [GoodMusic] = []
     var badSongs: [BadMusic] = []
+    var songQueryMood:SongQueryMood = SongQueryMood()
     
     //modeセレクト
     var mode:Int!
@@ -44,6 +43,11 @@ class MusicControllerView: UIViewController, AVAudioPlayerDelegate {
     var sTime:Int = 0
     var eTime:Int = 0
     
+    //雰囲気系さんのための数字
+    var happy_count:Float = 0
+    var unHappy_count:Float = 0
+    var noface_count:Float = 0
+    
     var userDefault: NSUserDefaults = NSUserDefaults()
     
     override func viewDidLoad() {
@@ -51,14 +55,16 @@ class MusicControllerView: UIViewController, AVAudioPlayerDelegate {
         super.viewDidLoad()
         
         artists = songQuery.get()
+        goodSongs = songQueryMood.getGood()
+        badSongs = songQueryMood.getBad()
         let url: NSURL = artists[0].songs[0].songUrl
         if(audio == nil){
             audio = try? AVAudioPlayer(contentsOfURL: url)
         }
         audio.delegate = self
         mode = 0
-        skipButton.enabled = false
-        previousButton.enabled = false
+//        skipButton.enabled = false
+//        previousButton.enabled = false
         
         //playボタンを隠す
         playButton.hidden = true
@@ -91,8 +97,6 @@ class MusicControllerView: UIViewController, AVAudioPlayerDelegate {
             let backVC: MusicSelectMood = (segue.destinationViewController as? MusicSelectMood)!
             
             backVC.audio = audio
-            backVC.artistNum = goodNum
-            backVC.songNum = badNum
         }
     }
     
@@ -118,19 +122,19 @@ class MusicControllerView: UIViewController, AVAudioPlayerDelegate {
         switch sender.selectedSegmentIndex {
         case 0:
             mode = 0
-            skipButton.enabled = false
-            previousButton.enabled = false
+//            skipButton.enabled = false
+//            previousButton.enabled = false
             
             print("Mood Mode")
         case 1:
             mode = 1
-            skipButton.enabled = true
-            previousButton.enabled = true
+//            skipButton.enabled = true
+//            previousButton.enabled = true
             print("Normal Mode")
         case 2:
             mode = 2
-            skipButton.enabled = true
-            previousButton.enabled = true
+//            skipButton.enabled = true
+//            previousButton.enabled = true
             print("Shuffle Mode")
         default:
             print("Error")
@@ -174,6 +178,23 @@ class MusicControllerView: UIViewController, AVAudioPlayerDelegate {
             playButton.enabled = true
         }
         if(audio != nil){
+            //moodモードの場合
+            if(mode == 0){
+                happy_count = 0
+                unHappy_count = 0
+                noface_count = 0
+                let data:NSString = "uid=\(userDefault.objectForKey("uid") as! String)&team=\(userDefault.objectForKey("team") as! String)"
+                let myData:NSData = data.dataUsingEncoding(NSUTF8StringEncoding)!
+                //URLの指定
+                let url: NSURL! = NSURL(string: "http://life-cloud.ht.sfc.keio.ac.jp/~mario/MusiCar/music.php")
+                let request = NSMutableURLRequest(URL: url)
+                
+                //POSTを指定
+                request.HTTPMethod = "POST"
+                //Dataをセット
+                request.HTTPBody = myData
+                NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: self.postTeam)
+            }
             //normalもーどの場合
             if(mode == 1){
                 if(songNum == artists[artistNum].songs.count - 1 && artistNum != artists.count - 1){
@@ -253,6 +274,24 @@ class MusicControllerView: UIViewController, AVAudioPlayerDelegate {
             playButton.enabled = true
         }
         if(audio != nil){
+            //moodモードの場合
+            if(mode == 0){
+                happy_count = 0
+                unHappy_count = 0
+                noface_count = 0
+                let data:NSString = "uid=\(userDefault.objectForKey("uid") as! String)&team=\(userDefault.objectForKey("team") as! String)"
+                let myData:NSData = data.dataUsingEncoding(NSUTF8StringEncoding)!
+                //URLの指定
+                let url: NSURL! = NSURL(string: "http://life-cloud.ht.sfc.keio.ac.jp/~mario/MusiCar/music.php")
+                let request = NSMutableURLRequest(URL: url)
+                
+                //POSTを指定
+                request.HTTPMethod = "POST"
+                //Dataをセット
+                request.HTTPBody = myData
+                NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: self.postTeam)
+            }
+            else{
                 if(songNum == 0 && artistNum != 0){
                     artistNum--
                     songNum = artists[artistNum].songs.count - 1
@@ -289,14 +328,58 @@ class MusicControllerView: UIViewController, AVAudioPlayerDelegate {
                         MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = [MPMediaItemPropertyArtist : "\(artists[artistNum].songs[songNum].artistName)",  MPMediaItemPropertyTitle : "\(artists[artistNum].songs[songNum].songTitle)", MPMediaItemPropertyPlaybackDuration: audio.duration, MPNowPlayingInfoPropertyElapsedPlaybackTime: audio.currentTime]
                     }
                 }
+            }
         }
         
     }
-    //表情の平均値を取得する
+    //表情の平均値を取得し音楽流す
     func postTeam(res:NSURLResponse?,data:NSData?,error:NSError?){
         if data != nil{
             let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding) as! String
-            print(dataString)
+            var dataSeparate = dataString.componentsSeparatedByString(",")
+            var goodsongNum:Int = Int(arc4random_uniform(UInt32(goodSongs.count)))
+            var badsongNum:Int = Int(arc4random_uniform(UInt32(badSongs.count)))
+            
+            if(dataString == ""){
+                let url: NSURL = NSURL(string: "\(goodSongs[goodsongNum].songUrl)")!
+                audio = try? AVAudioPlayer(contentsOfURL: url)
+                audio.delegate = self
+                audio.play()
+                musicTitle.text = goodSongs[goodsongNum].songTitle
+                musicArtist.text = goodSongs[goodsongNum].artistName
+            }
+            else{
+                for(var i:Int = 0; i < dataSeparate.count; i++){
+                    if(dataSeparate[i] == "VERY_LIKELY" || dataSeparate[i] == "LIKELY"){
+                        happy_count++
+//                        print(happy_count)
+                    }
+                    else if(dataSeparate[i] == "VERY_UNLIKELY" || dataSeparate[i] == "UNLIKELY"){
+                        unHappy_count++
+                    }
+                    else{
+                        noface_count++
+                    }
+                }
+                if(happy_count / (happy_count + unHappy_count) >= 0.3){
+                    let url: NSURL = NSURL(string: "\(goodSongs[goodsongNum].songUrl)")!
+                    audio = try? AVAudioPlayer(contentsOfURL: url)
+                    audio.delegate = self
+                    audio.play()
+                    musicTitle.text = goodSongs[goodsongNum].songTitle
+                    musicArtist.text = goodSongs[goodsongNum].artistName
+                    print("Play Fun Song")
+                }
+                else{
+                    let url: NSURL = NSURL(string: "\(badSongs[badsongNum].songUrl)")!
+                    audio = try? AVAudioPlayer(contentsOfURL: url)
+                    audio.delegate = self
+                    audio.play()
+                    musicTitle.text = badSongs[goodsongNum].songTitle
+                    musicArtist.text = badSongs[goodsongNum].artistName
+                    print("Play Calm Song")
+                }
+            }
         }
     }
     //曲が終わったら次の曲を流す
@@ -304,6 +387,9 @@ class MusicControllerView: UIViewController, AVAudioPlayerDelegate {
         if(flag == true){
             //moodモードの場合
             if(mode == 0){
+                happy_count = 0
+                unHappy_count = 0
+                noface_count = 0
                 let data:NSString = "uid=\(userDefault.objectForKey("uid") as! String)&team=\(userDefault.objectForKey("team") as! String)"
                 let myData:NSData = data.dataUsingEncoding(NSUTF8StringEncoding)!
                 //URLの指定
@@ -397,9 +483,25 @@ class MusicControllerView: UIViewController, AVAudioPlayerDelegate {
                 playButton.hidden = false
                 playButton.enabled = true
             }else if(event?.subtype == UIEventSubtype.RemoteControlNextTrack){
-                if(mode != 0){
                     audio.stop()
                     if(audio != nil){
+                        //moodモードの場合
+                        if(mode == 0){
+                            happy_count = 0
+                            unHappy_count = 0
+                            noface_count = 0
+                            let data:NSString = "uid=\(userDefault.objectForKey("uid") as! String)&team=\(userDefault.objectForKey("team") as! String)"
+                            let myData:NSData = data.dataUsingEncoding(NSUTF8StringEncoding)!
+                            //URLの指定
+                            let url: NSURL! = NSURL(string: "http://life-cloud.ht.sfc.keio.ac.jp/~mario/MusiCar/music.php")
+                            let request = NSMutableURLRequest(URL: url)
+                            
+                            //POSTを指定
+                            request.HTTPMethod = "POST"
+                            //Dataをセット
+                            request.HTTPBody = myData
+                            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: self.postTeam)
+                        }
                         if(mode == 1){
                             if(songNum == artists[artistNum].songs.count - 1 ){
                                 artistNum++
@@ -454,49 +556,65 @@ class MusicControllerView: UIViewController, AVAudioPlayerDelegate {
                                 }
                             }
                         }
-                    }
                 }
             }else if(event?.subtype == UIEventSubtype.RemoteControlPreviousTrack){
-                if(mode != 0){
                 audio.stop()
                     if(audio != nil){
-                        if(songNum == 0 && artistNum != 0){
-                            artistNum--
-                            songNum = artists[artistNum].songs.count - 1
-                            let url: NSURL = artists[artistNum].songs[songNum].songUrl
-                            audio = try? AVAudioPlayer(contentsOfURL: url)
-                            audio.delegate = self
-                            audio.play()
-                        }else if(songNum == 0 && artistNum == 0){
-                            artistNum = artists.count - 1
-                            songNum = artists[artistNum].songs.count - 1
-                            let url: NSURL = artists[artistNum].songs[songNum].songUrl
-                            audio = try? AVAudioPlayer(contentsOfURL: url)
-                            audio.delegate = self
-                            audio.play()
-                        }else{
-                            songNum--
-                            let url: NSURL = artists[artistNum].songs[songNum].songUrl
-                            audio = try? AVAudioPlayer(contentsOfURL: url)
-                            audio.delegate = self
-                            audio.play()
+                        //moodモードの場合
+                        if(mode == 0){
+                            happy_count = 0
+                            unHappy_count = 0
+                            noface_count = 0
+                            let data:NSString = "uid=\(userDefault.objectForKey("uid") as! String)&team=\(userDefault.objectForKey("team") as! String)"
+                            let myData:NSData = data.dataUsingEncoding(NSUTF8StringEncoding)!
+                            //URLの指定
+                            let url: NSURL! = NSURL(string: "http://life-cloud.ht.sfc.keio.ac.jp/~mario/MusiCar/music.php")
+                            let request = NSMutableURLRequest(URL: url)
+                            
+                            //POSTを指定
+                            request.HTTPMethod = "POST"
+                            //Dataをセット
+                            request.HTTPBody = myData
+                            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: self.postTeam)
                         }
-                        musicTitle.text = artists[artistNum].songs[songNum].songTitle
-                        musicArtist.text = artists[artistNum].songs[songNum].artistName
-                        let realm = try! Realm()
-                        let images = realm.objects(Music).filter("title = '\(artists[artistNum].songs[songNum].songTitle)'")
-                        for image in images{
-                            if(image.image != ""){
-                                let url1 = NSURL(string: "\(image.image)")
-                                let imageData :NSData = try! NSData(contentsOfURL: url1!, options: NSDataReadingOptions.DataReadingMappedIfSafe)
-                                let image: UIImage = UIImage(data:imageData)!
-                                let artwork = MPMediaItemArtwork(image: image)
-                                MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = [MPMediaItemPropertyArtist : "\(artists[artistNum].songs[songNum].artistName)",  MPMediaItemPropertyTitle : "\(artists[artistNum].songs[songNum].songTitle)", MPMediaItemPropertyArtwork: artwork ,MPMediaItemPropertyPlaybackDuration: audio.duration, MPNowPlayingInfoPropertyElapsedPlaybackTime: audio.currentTime]
+                        else{
+                            if(songNum == 0 && artistNum != 0){
+                                artistNum--
+                                songNum = artists[artistNum].songs.count - 1
+                                let url: NSURL = artists[artistNum].songs[songNum].songUrl
+                                audio = try? AVAudioPlayer(contentsOfURL: url)
+                                audio.delegate = self
+                                audio.play()
+                            }else if(songNum == 0 && artistNum == 0){
+                                artistNum = artists.count - 1
+                                songNum = artists[artistNum].songs.count - 1
+                                let url: NSURL = artists[artistNum].songs[songNum].songUrl
+                                audio = try? AVAudioPlayer(contentsOfURL: url)
+                                audio.delegate = self
+                                audio.play()
                             }else{
-                                MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = [MPMediaItemPropertyArtist : "\(artists[artistNum].songs[songNum].artistName)",  MPMediaItemPropertyTitle : "\(artists[artistNum].songs[songNum].songTitle)", MPMediaItemPropertyPlaybackDuration: audio.duration, MPNowPlayingInfoPropertyElapsedPlaybackTime: audio.currentTime]
+                                songNum--
+                                let url: NSURL = artists[artistNum].songs[songNum].songUrl
+                                audio = try? AVAudioPlayer(contentsOfURL: url)
+                                audio.delegate = self
+                                audio.play()
+                            }
+                            musicTitle.text = artists[artistNum].songs[songNum].songTitle
+                            musicArtist.text = artists[artistNum].songs[songNum].artistName
+                            let realm = try! Realm()
+                            let images = realm.objects(Music).filter("title = '\(artists[artistNum].songs[songNum].songTitle)'")
+                            for image in images{
+                                if(image.image != ""){
+                                    let url1 = NSURL(string: "\(image.image)")
+                                    let imageData :NSData = try! NSData(contentsOfURL: url1!, options: NSDataReadingOptions.DataReadingMappedIfSafe)
+                                    let image: UIImage = UIImage(data:imageData)!
+                                    let artwork = MPMediaItemArtwork(image: image)
+                                    MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = [MPMediaItemPropertyArtist : "\(artists[artistNum].songs[songNum].artistName)",  MPMediaItemPropertyTitle : "\(artists[artistNum].songs[songNum].songTitle)", MPMediaItemPropertyArtwork: artwork ,MPMediaItemPropertyPlaybackDuration: audio.duration, MPNowPlayingInfoPropertyElapsedPlaybackTime: audio.currentTime]
+                                }else{
+                                    MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = [MPMediaItemPropertyArtist : "\(artists[artistNum].songs[songNum].artistName)",  MPMediaItemPropertyTitle : "\(artists[artistNum].songs[songNum].songTitle)", MPMediaItemPropertyPlaybackDuration: audio.duration, MPNowPlayingInfoPropertyElapsedPlaybackTime: audio.currentTime]
+                                }
                             }
                         }
-                    }
                 }
             }else{
                 print("error")

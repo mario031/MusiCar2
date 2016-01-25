@@ -11,6 +11,7 @@
 		A38CAC5941532CAADDF3F3F9 /* Pods_MusiCar2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A06E063E47CBEDFC99F2327 /* Pods_MusiCar2.framework */; };
 		B1240A6D1C4FF6AA0009904E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1240A6C1C4FF6AA0009904E /* LoginViewController.swift */; };
 		B132600B1C53754C00AF0ED7 /* CloudVisionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B132600A1C53754C00AF0ED7 /* CloudVisionRequest.swift */; };
+		B13C663E1C5694EB000F04AD /* SongQueryMood.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13C663D1C5694EB000F04AD /* SongQueryMood.swift */; };
 		B13FA8861C487701008E7DAC /* CameraUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FA8851C487701008E7DAC /* CameraUtil.swift */; };
 		B1423CD71C5200A900D6921F /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1423CD61C5200A900D6921F /* RegisterViewController.swift */; };
 		B17721661C370F6A0093EF49 /* MusicSelectMood.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17721651C370F6A0093EF49 /* MusicSelectMood.swift */; };
@@ -66,6 +67,7 @@
 		5F0188224868E0AFBBBB7664 /* Pods_MusiCar2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusiCar2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1240A6C1C4FF6AA0009904E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B132600A1C53754C00AF0ED7 /* CloudVisionRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudVisionRequest.swift; sourceTree = "<group>"; };
+		B13C663D1C5694EB000F04AD /* SongQueryMood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongQueryMood.swift; sourceTree = "<group>"; };
 		B13FA8851C487701008E7DAC /* CameraUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraUtil.swift; sourceTree = "<group>"; };
 		B1423CD41C50C51F00D6921F /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = "Pods/../build/Debug-iphoneos/SVProgressHUD.framework"; sourceTree = "<group>"; };
 		B1423CD61C5200A900D6921F /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				B1ABBED41C31D5AA00105545 /* SongQuery.swift */,
+				B13C663D1C5694EB000F04AD /* SongQueryMood.swift */,
 				B1ABBED61C31D5B500105545 /* Music.swift */,
 				B13FA8851C487701008E7DAC /* CameraUtil.swift */,
 				B132600A1C53754C00AF0ED7 /* CloudVisionRequest.swift */,
@@ -512,6 +515,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B13FA8861C487701008E7DAC /* CameraUtil.swift in Sources */,
+				B13C663E1C5694EB000F04AD /* SongQueryMood.swift in Sources */,
 				B1423CD71C5200A900D6921F /* RegisterViewController.swift in Sources */,
 				B1ABBED11C31D59200105545 /* MusicSelectView.swift in Sources */,
 				B1ABBED31C31D59F00105545 /* SearchControllerView.swift in Sources */,

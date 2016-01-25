@@ -223,15 +223,16 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 self.takePictureButton.hidden = false
                 self.takePictureButton.enabled = true
                 self.myVideoLayer.hidden = false
-                self.view.bringSubviewToFront(self.takePictureButton)
                 self.view.bringSubviewToFront(self.addScroll)
                 self.view.bringSubviewToFront(self.makeTextfield)
+                self.view.bringSubviewToFront(self.takePictureButton)
                 self.makeLabel.hidden = false
                 self.makeTextfield.hidden = false
                 self.makeTextfield.enabled = true
                 self.sakusei.hidden = false
                 self.sakusei.enabled = true
-                           }
+                
+            }
         }else{
             endButton.hidden = false
             endButton.enabled = true
@@ -243,6 +244,7 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
             sakusei.enabled = false
             myVideoLayer.hidden = false
             self.view.sendSubviewToBack(addScroll)
+            self.view.sendSubviewToBack(makeTextfield)
             self.view.sendSubviewToBack(takePictureButton)
             takePictureButton.hidden = true
             takePictureButton.enabled = false
@@ -447,7 +449,6 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return true
     }
     func textFieldShouldReturn(textField: UITextField) -> Bool{
-        self.view.bringSubviewToFront(takePictureButton)
         textField.resignFirstResponder()
         
         return true

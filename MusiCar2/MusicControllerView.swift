@@ -337,16 +337,26 @@ class MusicControllerView: UIViewController, AVAudioPlayerDelegate {
         if data != nil{
             let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding) as! String
             var dataSeparate = dataString.componentsSeparatedByString(",")
-            var goodsongNum:Int = Int(arc4random_uniform(UInt32(goodSongs.count)))
-            var badsongNum:Int = Int(arc4random_uniform(UInt32(badSongs.count)))
+            let goodsongNum:Int = Int(arc4random_uniform(UInt32(goodSongs.count)))
+            let badsongNum:Int = Int(arc4random_uniform(UInt32(badSongs.count)))
+            let randomNum:Int = Int(arc4random_uniform(UInt32(2)))
             
             if(dataString == ""){
-                let url: NSURL = NSURL(string: "\(goodSongs[goodsongNum].songUrl)")!
-                audio = try? AVAudioPlayer(contentsOfURL: url)
-                audio.delegate = self
-                audio.play()
-                musicTitle.text = goodSongs[goodsongNum].songTitle
-                musicArtist.text = goodSongs[goodsongNum].artistName
+                if(randomNum == 0){
+                    let url: NSURL = NSURL(string: "\(goodSongs[goodsongNum].songUrl)")!
+                    audio = try? AVAudioPlayer(contentsOfURL: url)
+                    audio.delegate = self
+                    audio.play()
+                    musicTitle.text = goodSongs[goodsongNum].songTitle
+                    musicArtist.text = goodSongs[goodsongNum].artistName
+                }else{
+                    let url: NSURL = NSURL(string: "\(badSongs[badsongNum].songUrl)")!
+                    audio = try? AVAudioPlayer(contentsOfURL: url)
+                    audio.delegate = self
+                    audio.play()
+                    musicTitle.text = badSongs[badsongNum].songTitle
+                    musicArtist.text = badSongs[badsongNum].artistName
+                }
             }
             else{
                 for(var i:Int = 0; i < dataSeparate.count; i++){

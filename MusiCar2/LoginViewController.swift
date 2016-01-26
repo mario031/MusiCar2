@@ -316,18 +316,36 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func sakusei(sender: UIButton) {
-        mySession.stopRunning()
-        let data:NSString = "uid=\(userDefault.objectForKey("uid") as! String)&number=\(makeTextfield.text! as String)&name=\(userDefault.objectForKey("name") as! String) Car&make=yes"
-        let myData:NSData = data.dataUsingEncoding(NSUTF8StringEncoding)!
-        //URLの指定
-        let url: NSURL! = NSURL(string: "http://life-cloud.ht.sfc.keio.ac.jp/~mario/MusiCar/login_make.php")
-        let request = NSMutableURLRequest(URL: url)
-        
-        //POSTを指定
-        request.HTTPMethod = "POST"
-        //Dataをセット
-        request.HTTPBody = myData
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: self.postTeam1)
+        if(makeTextfield.text == ""){
+            SVProgressHUD.showErrorWithStatus("ナンバーが入力されて\nいません")
+        }
+        else{
+            let alertController = UIAlertController(title: "\(makeTextfield.text! as String) でよろしいですか？", message: "", preferredStyle: .Alert)
+            let otherAction = UIAlertAction(title: "OK", style: .Default) {
+                action in
+                self.mySession.stopRunning()
+                let data:NSString = "uid=\(self.userDefault.objectForKey("uid") as! String)&number=\(self.makeTextfield.text! as String)&name=\(self.userDefault.objectForKey("name") as! String) Car&make=yes"
+                let myData:NSData = data.dataUsingEncoding(NSUTF8StringEncoding)!
+                //URLの指定
+                let url: NSURL! = NSURL(string: "http://life-cloud.ht.sfc.keio.ac.jp/~mario/MusiCar/login_make.php")
+                let request = NSMutableURLRequest(URL: url)
+                
+                //POSTを指定
+                request.HTTPMethod = "POST"
+                //Dataをセット
+                request.HTTPBody = myData
+                NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: self.postTeam1)
+            }
+            let cancelAction = UIAlertAction(title: "CANCEL", style: .Cancel) {
+                action in
+                
+            }
+            
+            alertController.addAction(otherAction)
+            alertController.addAction(cancelAction)
+            presentViewController(alertController, animated: true, completion: nil)
+            
+        }
     }
     
     //team名をPOSTして帰ってきたときに実行される
@@ -354,7 +372,7 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func getData(res:NSURLResponse?,data:NSData?,error:NSError?){
         if data != nil{
             let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding) as! String
-            print(dataString)
+//            print(dataString)
             let dataSeparate = dataString.componentsSeparatedByString(",")
             tableData.removeAll()
             

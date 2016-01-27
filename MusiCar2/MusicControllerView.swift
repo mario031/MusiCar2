@@ -349,6 +349,19 @@ class MusicControllerView: UIViewController, AVAudioPlayerDelegate {
                     audio.play()
                     musicTitle.text = goodSongs[goodsongNum].songTitle
                     musicArtist.text = goodSongs[goodsongNum].artistName
+                    let realm = try! Realm()
+                    let images = realm.objects(Music).filter("title = '\(goodSongs[goodsongNum].songTitle)'")
+                    for image in images{
+                        if(image.image != ""){
+                            let url1 = NSURL(string: "\(image.image)")
+                            let imageData :NSData = try! NSData(contentsOfURL: url1!, options: NSDataReadingOptions.DataReadingMappedIfSafe)
+                            let image: UIImage = UIImage(data:imageData)!
+                            let artwork = MPMediaItemArtwork(image: image)
+                            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = [MPMediaItemPropertyArtist : "\(goodSongs[goodsongNum].artistName)",  MPMediaItemPropertyTitle : "\(goodSongs[goodsongNum].songTitle)", MPMediaItemPropertyArtwork: artwork ,MPMediaItemPropertyPlaybackDuration: audio.duration, MPNowPlayingInfoPropertyElapsedPlaybackTime: audio.currentTime]
+                        }else{
+                            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = [MPMediaItemPropertyArtist : "\(goodSongs[goodsongNum].artistName)",  MPMediaItemPropertyTitle : "\(goodSongs[goodsongNum].songTitle)", MPMediaItemPropertyPlaybackDuration: audio.duration, MPNowPlayingInfoPropertyElapsedPlaybackTime: audio.currentTime]
+                        }
+                    }
                 }else{
                     let url: NSURL = NSURL(string: "\(badSongs[badsongNum].songUrl)")!
                     audio = try? AVAudioPlayer(contentsOfURL: url)
@@ -356,6 +369,19 @@ class MusicControllerView: UIViewController, AVAudioPlayerDelegate {
                     audio.play()
                     musicTitle.text = badSongs[badsongNum].songTitle
                     musicArtist.text = badSongs[badsongNum].artistName
+                    let realm = try! Realm()
+                    let images = realm.objects(Music).filter("title = '\(badSongs[badsongNum].songTitle)'")
+                    for image in images{
+                        if(image.image != ""){
+                            let url1 = NSURL(string: "\(image.image)")
+                            let imageData :NSData = try! NSData(contentsOfURL: url1!, options: NSDataReadingOptions.DataReadingMappedIfSafe)
+                            let image: UIImage = UIImage(data:imageData)!
+                            let artwork = MPMediaItemArtwork(image: image)
+                            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = [MPMediaItemPropertyArtist : "\(badSongs[badsongNum].artistName)",  MPMediaItemPropertyTitle : "\(badSongs[badsongNum].songTitle)", MPMediaItemPropertyArtwork: artwork ,MPMediaItemPropertyPlaybackDuration: audio.duration, MPNowPlayingInfoPropertyElapsedPlaybackTime: audio.currentTime]
+                        }else{
+                            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = [MPMediaItemPropertyArtist : "\(badSongs[badsongNum].artistName)",  MPMediaItemPropertyTitle : "\(badSongs[badsongNum].songTitle)", MPMediaItemPropertyPlaybackDuration: audio.duration, MPNowPlayingInfoPropertyElapsedPlaybackTime: audio.currentTime]
+                        }
+                    }
                 }
             }
             else{
@@ -378,6 +404,19 @@ class MusicControllerView: UIViewController, AVAudioPlayerDelegate {
                     audio.play()
                     musicTitle.text = goodSongs[goodsongNum].songTitle
                     musicArtist.text = goodSongs[goodsongNum].artistName
+                    let realm = try! Realm()
+                    let images = realm.objects(Music).filter("title = '\(goodSongs[goodsongNum].songTitle)'")
+                    for image in images{
+                        if(image.image != ""){
+                            let url1 = NSURL(string: "\(image.image)")
+                            let imageData :NSData = try! NSData(contentsOfURL: url1!, options: NSDataReadingOptions.DataReadingMappedIfSafe)
+                            let image: UIImage = UIImage(data:imageData)!
+                            let artwork = MPMediaItemArtwork(image: image)
+                            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = [MPMediaItemPropertyArtist : "\(goodSongs[goodsongNum].artistName)",  MPMediaItemPropertyTitle : "\(goodSongs[goodsongNum].songTitle)", MPMediaItemPropertyArtwork: artwork ,MPMediaItemPropertyPlaybackDuration: audio.duration, MPNowPlayingInfoPropertyElapsedPlaybackTime: audio.currentTime]
+                        }else{
+                            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = [MPMediaItemPropertyArtist : "\(goodSongs[goodsongNum].artistName)",  MPMediaItemPropertyTitle : "\(goodSongs[goodsongNum].songTitle)", MPMediaItemPropertyPlaybackDuration: audio.duration, MPNowPlayingInfoPropertyElapsedPlaybackTime: audio.currentTime]
+                        }
+                    }
                     print("Play Fun Song")
                 }
                 else{
@@ -387,6 +426,19 @@ class MusicControllerView: UIViewController, AVAudioPlayerDelegate {
                     audio.play()
                     musicTitle.text = badSongs[goodsongNum].songTitle
                     musicArtist.text = badSongs[goodsongNum].artistName
+                    let realm = try! Realm()
+                    let images = realm.objects(Music).filter("title = '\(badSongs[badsongNum].songTitle)'")
+                    for image in images{
+                        if(image.image != ""){
+                            let url1 = NSURL(string: "\(image.image)")
+                            let imageData :NSData = try! NSData(contentsOfURL: url1!, options: NSDataReadingOptions.DataReadingMappedIfSafe)
+                            let image: UIImage = UIImage(data:imageData)!
+                            let artwork = MPMediaItemArtwork(image: image)
+                            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = [MPMediaItemPropertyArtist : "\(badSongs[badsongNum].artistName)",  MPMediaItemPropertyTitle : "\(badSongs[badsongNum].songTitle)", MPMediaItemPropertyArtwork: artwork ,MPMediaItemPropertyPlaybackDuration: audio.duration, MPNowPlayingInfoPropertyElapsedPlaybackTime: audio.currentTime]
+                        }else{
+                            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = [MPMediaItemPropertyArtist : "\(badSongs[badsongNum].artistName)",  MPMediaItemPropertyTitle : "\(badSongs[badsongNum].songTitle)", MPMediaItemPropertyPlaybackDuration: audio.duration, MPNowPlayingInfoPropertyElapsedPlaybackTime: audio.currentTime]
+                        }
+                    }
                     print("Play Calm Song")
                 }
             }

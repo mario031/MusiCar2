@@ -39,7 +39,8 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var joinBool:Bool = true
     
     //mysqlのテーブル(グループ名)を格納する
-    var tableData:[String] = []
+    var tableDataName:[String] = []
+    var tableDataDate:[String] = []
     
     var timer:NSTimer!
     
@@ -269,12 +270,20 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func join(sender: UIButton) {
         if(joinBool){
             //URLの指定
-            let url: NSURL! = NSURL(string: "http://life-cloud.ht.sfc.keio.ac.jp/~mario/MusiCar/get.php")
-            let request = NSMutableURLRequest(URL: url)
+            let url1: NSURL! = NSURL(string: "http://life-cloud.ht.sfc.keio.ac.jp/~mario/MusiCar/get_name.php")
+            let request1 = NSMutableURLRequest(URL: url1)
             
             //POSTを指定
-            request.HTTPMethod = "POST"
-            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: self.getData)
+            request1.HTTPMethod = "POST"
+            NSURLConnection.sendAsynchronousRequest(request1, queue: NSOperationQueue.mainQueue(), completionHandler: self.getNameData)
+            //URLの指定
+            let url2: NSURL! = NSURL(string: "http://life-cloud.ht.sfc.keio.ac.jp/~mario/MusiCar/get_date.php")
+            let request2 = NSMutableURLRequest(URL: url2)
+            
+            //POSTを指定
+            request2.HTTPMethod = "POST"
+            NSURLConnection.sendAsynchronousRequest(request2, queue: NSOperationQueue.mainQueue(), completionHandler: self.getDateData)
+
             
             endButton.hidden = true
             endButton.enabled = false
@@ -369,19 +378,35 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     //cellにtableを格納する
-    func getData(res:NSURLResponse?,data:NSData?,error:NSError?){
+    func getNameData(res:NSURLResponse?,data:NSData?,error:NSError?){
         if data != nil{
             let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding) as! String
 //            print(dataString)
             let dataSeparate = dataString.componentsSeparatedByString(",")
-            tableData.removeAll()
+            tableDataName.removeAll()
             
             for(var i:Int = 0; i < dataSeparate.count; i++){
-                tableData.append(dataSeparate[i])
+                tableDataName.append(dataSeparate[i])
 //                print(tableData[i])
             }
-            tableview.reloadData()
+//            tableview.reloadData()
 //            print(tableData.count)
+        }
+    }
+    //cellにtableを格納する
+    func getDateData(res:NSURLResponse?,data:NSData?,error:NSError?){
+        if data != nil{
+            let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding) as! String
+            //            print(dataString)
+            let dataSeparate = dataString.componentsSeparatedByString(",")
+            tableDataDate.removeAll()
+            
+            for(var i:Int = 0; i < dataSeparate.count; i++){
+                tableDataDate.append(dataSeparate[i])
+                //                print(tableData[i])
+            }
+            tableview.reloadData()
+            //            print(tableData.count)
         }
     }
     
@@ -393,16 +418,20 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // セクションの行数
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableData.count
+        return tableDataDate.count
     }
     
     func tableView( tableView: UITableView, cellForRowAtIndexPath indexPath:NSIndexPath ) -> UITableViewCell {
         
-        let cell = tableview.dequeueReusableCellWithIdentifier("Cellngo", forIndexPath: indexPath)
+        let cell: UITableViewCell = UITableViewCell( style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Cellngo" )
         
-        // Tag番号 1 で UILabel インスタンスの生成
-        let label = tableview.viewWithTag(1) as! UILabel
-        label.text = tableData[indexPath.row]
+        cell.textLabel!.text = tableDataName[indexPath.row]
+        cell.detailTextLabel!.text = tableDataDate[indexPath.row]
+//        let cell = tableview.dequeueReusableCellWithIdentifier("Cellngo", forIndexPath: indexPath)
+        
+//        // Tag番号 1 で UILabel インスタンスの生成
+//        let label = tableview.viewWithTag(1) as! UILabel
+//        label.text = tableData[indexPath.row]
         
         return cell
     }
@@ -413,13 +442,13 @@ class LoginViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // 選択したグループ名を表示
     func tableView( tableView: UITableView, didSelectRowAtIndexPath indexPath:NSIndexPath ) {
-        let alertController = UIAlertController(title: "\(tableData[indexPath.row])に参加してよろしいですか？", message: "", preferredStyle: .Alert)
+        let alertController = UIAlertController(title: "\(tableDataName[indexPath.row])に参加してよろしいですか？", message: "", preferredStyle: .Alert)
         let otherAction = UIAlertAction(title: "OK", style: .Default) {
             action in
             
-            self.groupLabel.text = self.tableData[indexPath.row]
+            self.groupLabel.text = self.tableDataName[indexPath.row]
             
-            let data:NSString = "uid=\(self.userDefault.objectForKey("uid") as! String)&name=\(self.tableData[indexPath.row])&make=no"
+            let data:NSString = "uid=\(self.userDefault.objectForKey("uid") as! String)&name=\(self.tableDataName[indexPath.row])&date=\(self.tableDataDate[indexPath.row])&make=no"
             let myData:NSData = data.dataUsingEncoding(NSUTF8StringEncoding)!
             //URLの指定
             let url: NSURL! = NSURL(string: "http://life-cloud.ht.sfc.keio.ac.jp/~mario/MusiCar/login_join.php")

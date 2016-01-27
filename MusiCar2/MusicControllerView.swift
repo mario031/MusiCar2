@@ -397,6 +397,19 @@ class MusicControllerView: UIViewController, AVAudioPlayerDelegate {
                         noface_count++
                     }
                 }
+                let data:NSString = "smile=\(happy_count)&bad=\(unHappy_count)&noface=\(noface_count)"
+                let myData:NSData = data.dataUsingEncoding(NSUTF8StringEncoding)!
+                //URLの指定
+                let url: NSURL! = NSURL(string: "http://life-cloud.ht.sfc.keio.ac.jp/~mario/MusiCar/hyouka.php")
+                let request = NSMutableURLRequest(URL: url)
+                
+                //POSTを指定
+                request.HTTPMethod = "POST"
+                //Dataをセット
+                request.HTTPBody = myData
+                let result = try? NSURLConnection.sendSynchronousRequest(request, returningResponse: nil)
+                print(result)
+                
                 if(happy_count / (happy_count + unHappy_count) >= 0.3){
                     let url: NSURL = NSURL(string: "\(goodSongs[goodsongNum].songUrl)")!
                     audio = try? AVAudioPlayer(contentsOfURL: url)
